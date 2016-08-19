@@ -188,8 +188,7 @@ ModDone(void *vArgs) {
 
  * \param[in]   u8Len          - The number of bytes to combine.
  * 
- *
- * \return      The integer result of combining the bytes
+ * \return      The integer result of combining the bytes.
  *
  *************************************************************************************************/
 static uint64_t
