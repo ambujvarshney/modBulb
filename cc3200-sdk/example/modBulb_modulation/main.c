@@ -1,6 +1,7 @@
 /* main.c
  *
- * Example that illustrates the use of the modulation interface functions of CC3200 device.
+ * Example that illustrates the use of the modulation interface functions
+ * of CC3200 device.
  *
  * Copyright (C) 2016 Uppsala Netowrked Objects.
  * 
@@ -41,7 +42,7 @@
 #include <stdint.h>
 
 // fix __CONCAT redefined warning
-#ifdef __CONCAT
+#if defined(__CONCAT) && !defined(__SIMPLELINK_H__)
 #undef __CONCAT
 #endif
 // simplelink includes
