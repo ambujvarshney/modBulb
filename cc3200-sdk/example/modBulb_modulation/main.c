@@ -169,7 +169,7 @@ BoardInit(void) {
 /**********************************************************************************************//**
  * \brief Modulation done callback funciton.
  *
- * The function sets the command flag to 0.
+ * This function sets the command flag to 0.
  *
  * \param[in]   vArgs          - Argument vector (not used).
  *
