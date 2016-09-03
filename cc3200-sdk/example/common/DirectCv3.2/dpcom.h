@@ -110,7 +110,7 @@ extern DPUCHAR page_global_buffer[PAGE_BUFFER_SIZE];  /* Page_global_buffer simu
 DPUCHAR * dp_get_data(DPUCHAR var_ID,DPULONG bit_index);
 DPUCHAR * dp_get_header_data(DPULONG bit_index);
 void dp_get_page_data(DPULONG image_requested_address);
-long read_config_file(unsigned long addr);          // should be implemented by user
+DPLONG read_config_file(DPULONG addr);
 void dp_get_data_block_address(DPUCHAR requested_var_ID);
 DPUCHAR * dp_get_data_block_element_address(DPULONG bit_index);
 DPULONG dp_get_bytes(DPUCHAR var_ID,DPULONG byte_index,DPUCHAR bytes_requested);

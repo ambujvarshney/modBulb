@@ -153,6 +153,7 @@ typedef   signed long  DPLONG;
 #define IAP_SEL 2u
 
 extern DPUCHAR *image_buffer;
+extern DPLONG  config_file_handle; 
 extern DPUCHAR hardware_interface;
 extern DPUCHAR enable_mss_support;
 

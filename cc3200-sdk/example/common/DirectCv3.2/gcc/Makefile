@@ -55,8 +55,11 @@ IPATH=..
 IPATH+=../G3Algo
 IPATH+=../G4Algo
 IPATH+=../JTAG
+IPATH+=../../
 IPATH+=${ROOT}/driverlib
 IPATH+=${ROOT}/inc
+IPATH+=${ROOT}/simplelink/include
+IPATH+=${ROOT}/simplelink_extlib/provisioninglib
 
 # The default rule, which causes the driver library to be built.
 all: ${OBJDIR} ${BINDIR}

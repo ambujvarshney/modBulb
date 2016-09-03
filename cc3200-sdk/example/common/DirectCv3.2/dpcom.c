@@ -83,6 +83,13 @@ communications whether written or oral.
 #include "dpuser.h"
 #include "dpcom.h"
 #include "dpjtag.h"
+#ifdef USE_PAGING
+#include <stdlib.h>
+#if defined(__CONCAT) && !defined(__SIMPLELINK_H__)
+#undef __CONCAT
+#endif
+#include "simplelink.h"
+#endif
 
 /*
 * Paging System Specific Implementation.  User attention required:
@@ -91,6 +98,7 @@ DPUCHAR *image_buffer; /* Pointer to the image in the system memory */
 DPUCHAR *page_buffer_ptr;
 #ifdef USE_PAGING
 DPUCHAR page_global_buffer[PAGE_BUFFER_SIZE];  /* Page_global_buffer simulating the global_buf1fer that is accessible by DirectC code*/
+DPLONG  config_file_handle;
 DPULONG page_address_offset;
 DPULONG start_page_address = 0u;
 DPULONG end_page_address = 0u;
@@ -154,7 +162,6 @@ DPUCHAR* dp_get_header_data(DPULONG bit_index)
 
 
 #ifdef USE_PAGING
-
 /*
 * User attention: 
 * Module: dp_get_page_data
@@ -169,7 +176,7 @@ DPUCHAR* dp_get_header_data(DPULONG bit_index)
 */
 void dp_get_page_data(DPULONG image_requested_address)
 {
-    return_bytes = read_config_file(image_requested_address);
+    return_bytes = sl_FsRead(config_file_handle, image_requested_address, page_global_buffer, PAGE_BUFFER_SIZE);
     start_page_address = image_requested_address;
     end_page_address = image_requested_address + return_bytes - 1;
 }
