@@ -87,19 +87,19 @@
 #define CMD_INIT_VAL        0x07                ///< Initialize command value.
 #define CMD_MOD_VAL         0x0A                ///< Modulate command value.
 
-#define CMD_IND         u8Buffer[0]             ///< Location of command indicator in RX buffer.
+#define CMD_IND             u8Buffer[0]         ///< Location of command indicator in RX buffer.
 
-#define CMD_SCHEME      u8Buffer[1]             ///< Location of modulation scheme in RX buffer.
-#define CMD_DEVICE      u8Buffer[2]             ///< Location of device in RX buffer.
-#define CMD_BFSKF1      u8Buffer[3]             ///< Location of BFSK freq1 in RX buffer.
-#define CMD_BFSKF2      u8Buffer[7]             ///< Location of BFSK freq2 in RX buffer.
-#define CMD_DUTY        u8Buffer[11]            ///< Location of BFSK duty cycle in RX buffer.
-#define CMD_PPMBS       u8Buffer[12]            ///< Location of PPM bit/symbol in RX buffer.
+#define CMD_SCHEME          u8Buffer[1]         ///< Location of modulation scheme in RX buffer.
+#define CMD_DEVICE          u8Buffer[2]         ///< Location of device in RX buffer.
+#define CMD_BFSKF1          u8Buffer[3]         ///< Location of BFSK freq1 in RX buffer.
+#define CMD_BFSKF2          u8Buffer[7]         ///< Location of BFSK freq2 in RX buffer.
+#define CMD_DUTY            u8Buffer[11]        ///< Location of BFSK duty cycle in RX buffer.
+#define CMD_PPMBS           u8Buffer[12]        ///< Location of PPM bit/symbol in RX buffer.
 
-#define CMD_BITRATE     u8Buffer[1]             ///< Location of modulation datarate in RX buffer.
-#define CMD_DLEN        u8Buffer[5]             ///< Location of data length in RX buffer.
-#define CMD_DATA        u8Buffer[9]             ///< Location of data in RX buffer.
-#define CMD_DATA_OH     9
+#define CMD_BITRATE         u8Buffer[1]         ///< Location of modulation datarate in RX buffer.
+#define CMD_DLEN            u8Buffer[5]         ///< Location of data length in RX buffer.
+#define CMD_DATA            u8Buffer[9]         ///< Location of data in RX buffer.
+#define CMD_DATA_OH         9                   ///< Number of bytes that come before the data.
 
 /// Application specific status/error codes.
 typedef enum{
