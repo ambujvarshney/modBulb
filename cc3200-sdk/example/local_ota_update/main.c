@@ -555,12 +555,9 @@ void main() {
     }
 #else
     // set network info
-    // strcpy(sNetworkInfo.u8SSID, "TP-LINK_526D9C");
-    // strcpy(sNetworkInfo.u8SecurityKey, "AbdullahHy");
-    // sNetworkInfo.u8SecurityType = SL_SEC_TYPE_WPA_WPA2;
-    strcpy(sNetworkInfo.u8SSID, "AndroidAP");
-    strcpy(sNetworkInfo.u8SecurityKey, "abd12345");
-    sNetworkInfo.u8SecurityType = SL_SEC_TYPE_WPA_WPA2;
+    strcpy(sNetworkInfo.u8SSID, SSID_NAME);
+    strcpy(sNetworkInfo.u8SecurityKey, SECURITY_KEY);
+    sNetworkInfo.u8SecurityType = SECURITY_TYPE;
 #endif
 
     // set network security parameters
