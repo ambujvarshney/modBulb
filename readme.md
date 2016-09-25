@@ -12,9 +12,15 @@ Copyright (C) 2016 Uppsala Networked Objects.
 
 * Clone or download this repository.
 
+* To download to CC3200 board, Install [CC3200 Tool](https://github.com/ALLTERCO/cc3200tool). The tool is built using Python 2.7 and uses standard libraries, so it should support all OSs (We only tested on Ubuntu). Installtion and usage instructions are available at their Github repository.
+
+* Use CC3200 Tool to download the Service Pack binary to the the CC3200 filesystem.
+
+# Useage
+
 * Build the bindaries:
-	* GCC users: Place the the downloaded files within the cc3200-sdk directory following the same directory structure, then use `make` in the gcc directory to build the binaries. If you would rather not place the files within the SDK, modify the Makefile to point to the needed files in the cc3200-sdk directory.
+	* GCC users: Place the the downloaded files from this repository within the cc3200-sdk directory following the same directory structure, then use `make` in the gcc directory to build the binaries. If you would rather not place the files within the SDK, modify the Makefile to point to the needed files in the cc3200-sdk directory.
 	* CCS users: The projects were not created using CCS, so you need to create the project, link the SDK and add the needed sources.
 
-* To download to CC3200 board, Install [CC3200 Tool](https://github.com/ALLTERCO/cc3200tool). The tool is built using Python 2.7 and uses standard libraries, so it should support all OSs (We only tested on Ubuntu). Installtion and usage instructions are available at their Github repository.
+* Upload to the board using CC3200 Tool.
 
