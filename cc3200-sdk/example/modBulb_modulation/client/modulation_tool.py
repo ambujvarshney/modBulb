@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 #
 #  modulation_tool.py
 #  
@@ -33,8 +34,6 @@
 #
 #  Contributors: Abdalah Hilmia, Kasun Hewage and Ambuj Varshney.
 #
-
-#!/usr/bin/env python
 
 import os
 import argparse

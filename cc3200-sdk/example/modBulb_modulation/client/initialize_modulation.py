@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 #
 #  initialize_modulation.py
 #  
@@ -33,8 +34,6 @@
 #
 #  Contributors: Abdalah Hilmia, Kasun Hewage and Ambuj Varshney.
 #
-
-#!/usr/bin/env python
 
 import argparse
 from modulation_lib import ReturnCodes, Addr, sendInitCmd, mod_schemes, mod_devices
