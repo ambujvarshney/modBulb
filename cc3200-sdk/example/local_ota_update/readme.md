@@ -8,6 +8,8 @@ This application is used to download OTA updates to **modBulb**.
 
 * Build the *modified_bootloader* application.
 
+* (Optional) Specify the needed `CFLAGS` in *common/DirectCv3.2/gcc/Makefile.cflags* and build *DirectC.a*
+
 * Download *modified_bootloader/gcc/exe/application_bootloader.bin* to CC3200 as */sys/mcuimg.bin*.
 
 * Download *local_ota_update/gcc/exe/ota_client.bin* to CC3200 as */sys/mcuimg1.bin*.
