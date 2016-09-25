@@ -16,7 +16,7 @@ Copyright (C) 2016 Uppsala Networked Objects.
 
 * Use CC3200 Tool to download the Service Pack binary to the the CC3200 filesystem.
 
-# Useage
+# Usage
 
 * Build the bindaries:
 	* GCC users: Place the the downloaded files from this repository within the cc3200-sdk directory following the same directory structure, then use `make` in the gcc directory to build the binaries. If you would rather not place the files within the SDK, modify the Makefile to point to the needed files in the cc3200-sdk directory.
