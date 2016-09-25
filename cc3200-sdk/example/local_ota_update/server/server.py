@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 #
 #  server.py
 #  
@@ -34,7 +35,7 @@
 #  Contributors: Abdalah Hilmia, Kasun Hewage and Ambuj Varshney.
 #
 
-#!/usr/bin/env python
+
 
 import socket
 import sys
