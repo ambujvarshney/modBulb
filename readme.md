@@ -22,5 +22,5 @@ Copyright (C) 2016 Uppsala Networked Objects.
 	* GCC users: Place the downloaded files from this repository within the cc3200-sdk directory following the same directory structure, then use `make` in the gcc directory to build the binaries. If you would rather not place the files within the SDK, modify the Makefile to point to the needed files in the cc3200-sdk directory.
 	* CCS users: The projects were not created using CCS, so you need to create the project, link the SDK and add the needed sources.
 
-* Download the .bin file to the board using CC3200 Tool.
+* Download the exe/my_application.bin file to the board using CC3200 Tool.
 
