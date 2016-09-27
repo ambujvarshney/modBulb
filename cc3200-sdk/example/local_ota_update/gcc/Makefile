@@ -58,11 +58,13 @@ IPATH+=${ROOT}/simplelink
 IPATH+=${ROOT}/simplelink/source
 IPATH+=${ROOT}/simplelink/include
 IPATH+=${ROOT}/simplelink_extlib/provisioninglib
-IPATH+=../../bootloader
+IPATH+=../../modified_bootloader
 
 # The default rule, which causes the driver library to be built.
 all: ${OBJDIR} ${BINDIR}
 all: ${BINDIR}/ota_client.axf
+
+CFLAGS+=-O3
 
 # The rule to clean out all the build products.
 clean:
