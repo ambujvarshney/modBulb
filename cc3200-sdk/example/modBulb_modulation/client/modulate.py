@@ -36,6 +36,7 @@
 #
 
 import argparse
+from time import sleep
 from modulation_lib import ReturnCodes, Addr, sendModCmd
 
 def main(argv=None):
@@ -47,6 +48,12 @@ def main(argv=None):
             help='the UDP broadcast address to send init command to')
         parser.add_argument('data', type=str, default='Hello! World.',
             nargs='?', help='the data to send to be modulated')
+        parser.add_argument('-l', '--loop', nargs=1, type=int,
+        	help='send a number of modulation commands')
+        parser.add_argument('-li', '--loop-indefinately', action='store_true',
+        	help='send modulate commands indefinately.')
+        parser.add_argument('-d', '--delay', type=float, default=0.2, 
+        	help='the delay between modulation commands in a loop')
         parser.add_argument('encoding', type=str.upper, choices=['HEX', 'PLAIN'],
             default='PLAIN', nargs='?', help='the encoding of the provided data')
         parser.add_argument('bitrate', type=int, default=1e5, nargs='?',
@@ -55,9 +62,10 @@ def main(argv=None):
             help='the command indicator to send (0 <= val <= 255')
 
         args = parser.parse_args()
-        argv = (args.addr, args.indicator,  args.bitrate, args.data, args.encoding)
+        argv = (args.addr, args.indicator, args.bitrate, args.data, args.encoding,
+        		args.loop, args.loop_indefinately, args.delay)
 
-    if len(argv) < 5:
+    if len(argv) < 8:
         return ReturnCodes.ArgumentError
 
     data = None
@@ -70,6 +78,26 @@ def main(argv=None):
         data = argv[3]
         
     try:
+    	if argv[5] is not None:
+    		for i in range (argv[5][0]):
+    			ret = sendModCmd(argv[0], argv[1], argv[2], data)
+    			if ret != ReturnCodes.Success:
+    				return ret
+    			sleep(argv[7])
+    		return ReturnCodes.Success
+
+    	if argv[6]:
+    		try:
+	    		while True:
+	    			ret = sendModCmd(argv[0], argv[1], argv[2], data)
+	    			if ret != ReturnCodes.Success:
+	    				return ret
+	    			sleep(argv[7])
+	    	except KeyboardInterrupt:
+	    		return ReturnCodes.Success
+	    	except:
+	    		raise
+
         return sendModCmd(argv[0], argv[1], argv[2], data)
     except:
         return ReturnCodes.ArgumentError
