@@ -44,6 +44,7 @@ include ${ROOT}/tools/gcc_scripts/makedefs
 # Where to find source files that do not live in this directory.
 VPATH=..
 VPATH+=../../common
+VPATH+=${ROOT}/example/common
 
 # Additional Compiler Flags.
 CFLAGS+=-DUSER_INPUT_ENABLE
@@ -52,6 +53,7 @@ CFLAGS+=-DUSER_INPUT_ENABLE
 IPATH=..
 IPATH+=../../
 IPATH+=../../common
+IPATH+=${ROOT}/example/common
 IPATH+=${ROOT}/inc
 IPATH+=${ROOT}/oslib
 IPATH+=${ROOT}/driverlib
@@ -82,6 +84,7 @@ ${BINDIR}/modBulb_modulation.axf: ${OBJDIR}/main.o
 ${BINDIR}/modBulb_modulation.axf: ${OBJDIR}/uart_if.o
 ${BINDIR}/modBulb_modulation.axf: ${OBJDIR}/network_if.o
 ${BINDIR}/modBulb_modulation.axf: ${OBJDIR}/mod_if.o
+${BINDIR}/modBulb_modulation.axf: ${OBJDIR}/gpio_if.o
 ${BINDIR}/modBulb_modulation.axf: ${OBJDIR}/network_common.o
 ${BINDIR}/modBulb_modulation.axf: ${OBJDIR}/startup_${COMPILER}.o
 ${BINDIR}/modBulb_modulation.axf: ${ROOT}/simplelink/${COMPILER}/${BINDIR}/libsimplelink_nonos.a

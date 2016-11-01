@@ -367,6 +367,13 @@ main(void) {
     MAP_PinTypeUART(PIN_55, PIN_MODE_3);
     MAP_PinTypeUART(PIN_57, PIN_MODE_3);
 
+    MAP_PRCMPeripheralClkEnable(PRCM_GPIOA2, PRCM_RUN_MODE_CLK);
+    MAP_PinTypeGPIO(PIN_15, PIN_MODE_0, false);
+    MAP_GPIODirModeSet(GPIOA2_BASE, GPIO_PIN_6, GPIO_DIR_MODE_OUT);
+    
+    GPIO_IF_Set(PIN_15, GPIOA2_BASE, GPIO_PIN_6, 0);
+
+
     // initialize serial terminal
     InitTerm();
 
@@ -410,6 +417,9 @@ main(void) {
         if (s32RetVal == 0) {
             if (u8CmdDevice == DEV_MCU) {
                 if (u8CmdFlag == CMD_INIT) {
+                  
+                    GPIO_IF_Set(PIN_15, GPIOA2_BASE, GPIO_PIN_6, 0);
+                    
                     // initialize modulation based on command parameters
                     switch(u8CmdScheme) {
                         case MOD_OOK:
@@ -439,6 +449,7 @@ main(void) {
                 }
             } else if (u8CmdDevice == DEV_FPGA) {
                 // @TODO: implement MCU -> FPGA communication
+                GPIO_IF_Set(PIN_15, GPIOA2_BASE, GPIO_PIN_6, 1);
             }
         }
     }

@@ -45,11 +45,13 @@ VPATH=..
 #VPATH+=../../common/DirectCv3.2/JTAG
 VPATH+=../../drivers
 VPATH+=../../common
+VPATH+=${ROOT}/example/common
 
 # Where to find header files that do not live in the source directory.
 IPATH=..
 IPATH+=../../
 IPATH+=../../common
+IPATH+=${ROOT}/example/common
 IPATH+=../../common/DirectCv3.2
 IPATH+=${ROOT}/inc
 IPATH+=${ROOT}/oslib

@@ -39,7 +39,7 @@
 #
 # The base directory for TivaWare.
 #
-ROOT=../../../..
+ROOT=../../../
 
 #
 # Include the common make definitions.
@@ -56,8 +56,8 @@ VPATH=../
 #
 IPATH=..
 IPATH+=../../..
-IPATH+=../../../../inc
-IPATH+=../../../../driverlib
+IPATH+=${ROOT}/inc
+IPATH+=${ROOT}/driverlib
 
 #
 # The default rule, which causes the driver library to be built.

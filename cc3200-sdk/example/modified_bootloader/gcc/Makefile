@@ -50,6 +50,7 @@ include makedefs
 #
 VPATH=..
 VPATH+=../../common
+VPATH+=${ROOT}/example/common
 
 #
 # Where to find header files that do not live in the source directory.
@@ -57,6 +58,7 @@ VPATH+=../../common
 IPATH=..
 IPATH+=../..
 IPATH+=../../common
+IPATH+=${ROOT}/example/common
 IPATH+=${ROOT}/inc
 IPATH+=${ROOT}/driverlib
 IPATH+=${ROOT}/simplelink
