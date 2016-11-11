@@ -59,7 +59,7 @@ def main(argv=None):
         argv = (args.addr, args.indicator, args.scheme, args.device, args.freq, args.duty,
                 args.bit_symbol)
 
-    if len(argv) < 8:
+    if len(argv) < 7:
         return ReturnCodes.ArgumentError
 
     try:

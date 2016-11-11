@@ -82,6 +82,7 @@ ${BINDIR}/modBulb_modulation.axf: ${OBJDIR}/main.o
 ${BINDIR}/modBulb_modulation.axf: ${OBJDIR}/uart_if.o
 ${BINDIR}/modBulb_modulation.axf: ${OBJDIR}/network_if.o
 ${BINDIR}/modBulb_modulation.axf: ${OBJDIR}/mod_if.o
+${BINDIR}/modBulb_modulation.axf: ${OBJDIR}/spi_if.o
 ${BINDIR}/modBulb_modulation.axf: ${OBJDIR}/network_common.o
 ${BINDIR}/modBulb_modulation.axf: ${OBJDIR}/startup_${COMPILER}.o
 ${BINDIR}/modBulb_modulation.axf: ${ROOT}/simplelink/${COMPILER}/${BINDIR}/libsimplelink_nonos.a

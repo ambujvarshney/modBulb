@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#
+#  @TODO: requires an update
 #  modulation_tool.py
 #  
 #  A script to send initialization and modulation commands.

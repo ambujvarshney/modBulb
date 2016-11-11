@@ -391,7 +391,9 @@ _OOK_DrTimerIntHandler(void) {
         HWREG(u32GPIOPinReg) = 0;
 		u8ModReady = 1;
         MOD_IF_u8ModReady = 1;
-        fnCb(vCbArgs);
+        if (fnCb != NULL) {
+            fnCb(vCbArgs);
+        }
 	}
 }
 
@@ -416,7 +418,9 @@ _BFSK_DrTimerIntHandler(void) {
         _DisablePWMTimer();
 		u8ModReady = 1;
         MOD_IF_u8ModReady = 1;
-        fnCb(vCbArgs);
+        if (fnCb != NULL) {
+            fnCb(vCbArgs);
+        }
 	}    
 }
 
@@ -451,8 +455,11 @@ _PPM_DrTimerIntHandler(void) {
         // stop modulation
         _DisableDrTimer();
 		u8ModReady = 1;
+        HWREG(u32GPIOPinReg) = 0;
         MOD_IF_u8ModReady = 1;
-        fnCb(vCbArgs);
+        if (fnCb != NULL) {
+            fnCb(vCbArgs);
+        }
     }
 }
 
@@ -530,7 +537,7 @@ MOD_IF_InitModulation_PPM(uint32_t u32DrTimerBase, uint32_t u32SoGPIONum, uint32
     ASSERT_INPUT(u32DrTimerBase >= TIMERA0_BASE && u32DrTimerBase <= TIMERA3_BASE);
     ASSERT_INPUT(u32SoGPIONum <= 31);
     ASSERT_INPUT(u32SoPinNum >= PIN_01 && u32SoPinNum <= PIN_64);
-    ASSERT_INPUT(u8BitSymbol == 2 || u8BitSymbol == 4 || u8BitSymbol == 8);
+    ASSERT_INPUT(u8BitSymbol == 1 || u8BitSymbol == 2 || u8BitSymbol == 4 || u8BitSymbol == 8);
 
     u8ModScheme = MOD_PPM;
     MOD_IF_u8ModScheme = MOD_PPM;

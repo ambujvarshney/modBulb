@@ -69,8 +69,8 @@ typedef enum {
 /// Callback funtion type.
 typedef void (*MOD_fnCallback_t)(void *);
 
-uint8_t MOD_IF_u8ModReady;          ///< Read only modulation ready flag.
-uint8_t MOD_IF_u8ModScheme;         ///< Read only initialized modulation scheme.
+uint8_t MOD_IF_u8ModReady;          ///< Read only, modulation ready flag.
+uint8_t MOD_IF_u8ModScheme;         ///< Read only, initialized modulation scheme.
 
 /**********************************************************************************************//**
  * \brief This function initializes OOK.
