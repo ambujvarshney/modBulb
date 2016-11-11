@@ -1,0 +1,15 @@
+C:\Microsemi\Libero_SoC_v11.7\Synplify\bin64\m_proasic.exe  -prodtype  synplify_pro   -encrypt  -pro  -rundir  C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis   -part AGLN060V5  -package VQFP100  -grade STD    -globalthreshold 50 -maxfan 24 -opcond COMWC -report_path 4000 -RWCheckOnRam 0 -summaryfile C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\synlog\report\Top_fpga_mapper.xml  -top_level_module  work.Top  -licensetype  synplifypro_actel  -flow mapping  -mp  1  -prjfile  C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\scratchproject.prs  -implementation  synthesis  -multisrs  -oedif  C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\Top.edn   -freq 20.000   C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\synwork\Top_prem.srd  -sap  C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\Top.sap  -otap  C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\Top.tap  -omap  C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\Top.map  -devicelib  C:\Microsemi\Libero_SoC_v11.7\Synplify\lib\proasic\igloo.v  -sap  C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\Top.sap  -ologparam  C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\syntmp\Top.plg  -osyn  C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\Top.srm  -prjdir  C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\  -prjname  Top_syn  -log  C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\synlog\Top_fpga_mapper.srr 
+rc:1 success:1
+C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\scratchproject.prs|o|1478860631|2174
+C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\Top.edn|o|1478860862|627790
+C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\synwork\Top_prem.srd|i|1478860857|35146
+C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\Top.sap|o|1478860858|9883
+C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\Top.tap|o|0|0
+C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\Top.map|o|1478860863|28
+C:\Microsemi\Libero_SoC_v11.7\Synplify\lib\proasic\igloo.v|i|1449246928|50704
+C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\Top.sap|o|1478860858|9883
+C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\syntmp\Top.plg|o|1478860863|1254
+C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\Top.srm|o|1478860862|70513
+C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\synlog\Top_fpga_mapper.srr|o|1478860863|33876
+C:\Microsemi\Libero_SoC_v11.7\Synplify\bin\m_proasic.exe|i|1449764176|9590784
+C:\Microsemi\Libero_SoC_v11.7\Synplify\bin64\m_proasic.exe|i|1449765772|12124160

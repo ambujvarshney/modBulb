@@ -1,0 +1,27 @@
+*****************************************************************
+Pin Report - Date: Fri Nov 11 11:47:26 2016 Pinchecksum: NOT-AVAILABLE
+Product: Designer
+Release: v11.7
+Version: 11.7.0.119
+Design Name: Top
+Family: IGLOO
+Die: AGLN060V5
+Package: 100 VQFP
+*****************************************************************
+
+-----------------------------------------------------------------
+Flash*Freeze information
+        Pin name  : 27
+        Pin usage : Available as a regular pin
+-----------------------------------------------------------------
+
+Port       |Pin |Fixed |Function      |I/O Std  |Output Drive (mA) |Slew |Resistor Pull |Output Load (pF) |Use I/O Reg |Hot Swappable |Schmitt Trigger |Hold previous I/O state in Flash*Freeze mode |
+-----------|----|------|--------------|---------|------------------|-----|--------------|-----------------|------------|--------------|----------------|---------------------------------------------|
+CLK         15   Yes    GFA1/IO84RSB1  LVCMOS15  ---                ---   None           ---               No           No             No               No
+MOD_EN      21   Yes    GEB0/IO74RSB1  LVCMOS15  2                  High  None           5                 No           No             ---              No
+RESET_N     10   Yes    GFB1/IO87RSB1  LVCMOS15  ---                ---   None           ---               No           No             No               No
+SIGNAL_OUT  20   Yes    GEB1/IO75RSB1  LVCMOS15  2                  High  None           5                 No           No             ---              No
+spi_miso_o  59   Yes    GDC1/IO45RSB0  LVCMOS15  2                  High  None           5                 No           No             ---              No
+spi_mosi_i  60   Yes    GCC2/IO43RSB0  LVCMOS15  ---                ---   None           ---               No           No             No               No
+spi_sck_i   58   Yes    GDC0/IO46RSB0  LVCMOS15  ---                ---   None           ---               No           No             No               No
+spi_ssel_i  57   Yes    GDA1/IO49RSB0  LVCMOS15  ---                ---   None           ---               No           No             No               No

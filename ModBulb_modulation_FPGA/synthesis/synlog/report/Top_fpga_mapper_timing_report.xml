@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- *************************************************************************************
+FILE DESCRIPTION
+Max Top 5 critical clocks will be reported. For rest user needs to refer to Detailed report
+*******************************************************************************************-->
+<report_table display_priority="2" name="Timing Summary">
+<report_link name="Detailed report">
+<data>C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\synlog\Top_fpga_mapper.srr</data>
+<title>START OF TIMING REPORT</title>
+</report_link>
+<row>
+<data tcl_name="clock_name">Clock Name</data>
+<data tcl_name="req_freq">Req Freq</data>
+<data tcl_name="est_freq">Est Freq</data>
+<data tcl_name="slack">Slack</data>
+</row>
+<row>
+<data>Top|CLK</data>
+<data>20.0 MHz</data>
+<data>28.7 MHz</data>
+<data>15.179</data>
+</row>
+<row>
+<data>Top|spi_sck_i</data>
+<data>20.0 MHz</data>
+<data>60.6 MHz</data>
+<data>16.744</data>
+</row>
+</report_table>

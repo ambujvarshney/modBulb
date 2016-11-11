@@ -1,0 +1,2 @@
+@E: CD648 :"C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\component\work\Top\Top.vhd":172:22:172:41|Expression does not match type std_ulogic
+

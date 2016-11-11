@@ -1,0 +1,2 @@
+@W: MT420 |Found inferred clock Top|CLK with period 50.00ns. Please declare a user-defined clock on object "p:CLK"
+@W: MT420 |Found inferred clock Top|spi_sck_i with period 50.00ns. Please declare a user-defined clock on object "p:spi_sck_i"

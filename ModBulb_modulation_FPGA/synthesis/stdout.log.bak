@@ -1,0 +1,43 @@
+sourcing C:\Microsemi\Libero_SoC_v11.7\Synplify\lib\message_override.tcl
+
+Starting:    C:\Microsemi\Libero_SoC_v11.7\Synplify\bin64\mbin\synplify.exe
+Install:     C:\Microsemi\Libero_SoC_v11.7\Synplify
+Hostname:    DESKTOP-B8QPEOE
+Date:        Fri Nov 11 11:33:22 2016
+Version:     J-2015.03M-SP1-2
+
+Arguments:   -product synplify_pro Top_syn.prj
+ProductType: synplify_pro
+
+License checkout: synplifypro_actel
+License: synplifypro_actel node-locked 
+Licensed Vendor: actel
+License Option: actel_oem
+
+
+ is invalid value for opcond
+valid settings: Default COM-WC IND-WC MIL-WC COMWC COMTC COMBC INDWC INDTC INDBC MILWC MILTC MILBC TGrade1WC TGrade1TC TGrade1BC TGrade2WC TGrade2TC TGrade2BC
+Implementation not found: synthesis
+OnSyncomMessage()
+OnSyncomMessage()
+log file: "C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\Top.srr"
+Running: synthesis in foreground
+
+Running Top_syn|synthesis
+
+Running: compile (Compile) on Top_syn|synthesis
+
+Running: compile_flow (Compile Process) on Top_syn|synthesis
+
+Running: compiler (Compile Input) on Top_syn|synthesis
+compiler exited with errors
+
+Job: "compiler" terminated with error status: 2
+See log file: "C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\synlog\Top_compiler.srr"
+Return Code: 2
+Run Time:0h:00m:01s
+Opening object source file c:\users\abdullah\projects\fpga\workplace\modbulb_modulation_fpga\component\work\top\top.vhd
+Opening object source file c:\users\abdullah\projects\fpga\workplace\modbulb_modulation_fpga\component\work\top\top.vhd
+Opening object source file c:\users\abdullah\projects\fpga\workplace\modbulb_modulation_fpga\component\work\top\top.vhd
+exit status=2
+License checkin: synplifypro_actel

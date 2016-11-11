@@ -1,0 +1,2 @@
+CKID0001:@|S:CLK@|E:spi_slave_0.do_valid_A@|F:@syn_sample_clock_path==CKID0001@|M:ClockId0001 
+CKID0002:@|S:spi_sck_i@|E:spi_slave_0.sh_reg[15]@|F:@syn_sample_clock_path==CKID0002@|M:ClockId0002 

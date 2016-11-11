@@ -1,0 +1,28 @@
+@P:  Worst Slack : 15.179
+@P:  Top|CLK - Estimated Frequency : 28.7 MHz
+@P:  Top|CLK - Requested Frequency : 20.0 MHz
+@P:  Top|CLK - Estimated Period : 34.821
+@P:  Top|CLK - Requested Period : 50.000
+@P:  Top|CLK - Slack : 15.179
+@P:  Top|spi_sck_i - Estimated Frequency : 60.6 MHz
+@P:  Top|spi_sck_i - Requested Frequency : 20.0 MHz
+@P:  Top|spi_sck_i - Estimated Period : 16.513
+@P:  Top|spi_sck_i - Requested Period : 50.000
+@P:  Top|spi_sck_i - Slack : 16.744
+@P:  Worst Slack(min analysis) : NA
+@P:  Top|CLK - Estimated Frequency(min analysis) : 28.7 MHz
+@P:  Top|CLK - Requested Frequency(min analysis) : 20.0 MHz
+@P:  Top|CLK - Estimated Period(min analysis) : 34.821
+@P:  Top|CLK - Requested Period(min analysis) : 50.000
+@P:  Top|CLK - Slack(min analysis) : 15.179
+@P:  Top|spi_sck_i - Estimated Frequency(min analysis) : 60.6 MHz
+@P:  Top|spi_sck_i - Requested Frequency(min analysis) : 20.0 MHz
+@P:  Top|spi_sck_i - Estimated Period(min analysis) : 16.513
+@P:  Top|spi_sck_i - Requested Period(min analysis) : 50.000
+@P:  Top|spi_sck_i - Slack(min analysis) : 16.744
+@P:  Total Area : 1397.0
+@P:  Total Area : 78.0
+@P:  Total Area : 31.0
+@P:  Total Area : 1286.0
+@P:  Total Area : 1397.0
+@P:  CPU Time : 0h:00m:03s

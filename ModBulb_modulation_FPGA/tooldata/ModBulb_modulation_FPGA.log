@@ -1,0 +1,16 @@
+Project Name: ModBulb_modulation_FPGA
+Location: C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA
+Description: 
+Preferred HDL Type: VHDL
+
+#-----------------------------------------------------
+                  Device Details
+#-----------------------------------------------------
+
+Part Number    : AGLN060V5-VQ100
+Family         : IGLOO
+Die            : AGLN060V5
+Package        : 100 VQFP
+Speed          : STD
+Core Voltage   : 1.5
+Range          : COM

@@ -1,0 +1,107 @@
+@N: CD630 :".\gentmp7397a00600":4:7:4:9|Synthesizing work.top.gen 
+@N: CD630 :"syng0a00600":1185:7:1185:12|Synthesizing work.cmp_lt.fcomp 
+@N: CD630 :"syng0a00600":836:7:836:21|Synthesizing work.dwact_bl_fgcomp.fcomp 
+@W: CD280 :"syng0a00600":868:12:868:14|Unbound component AO1 mapped to black box
+@W: CD796 :"syng0a00600":1037:9:1037:9|Bit 3 of signal e is undriven. Possible simulation mismatch as initial value or default value is ignored. To avoid simulation mismatches, explicitly drive this bit. 
+@W: CD796 :"syng0a00600":1037:9:1037:9|Bit 4 of signal e is undriven. Possible simulation mismatch as initial value or default value is ignored. To avoid simulation mismatches, explicitly drive this bit. 
+@W: CD796 :"syng0a00600":1037:9:1037:9|Bit 5 of signal e is undriven. Possible simulation mismatch as initial value or default value is ignored. To avoid simulation mismatches, explicitly drive this bit. 
+@W: CD796 :"syng0a00600":1037:9:1037:9|Bit 6 of signal e is undriven. Possible simulation mismatch as initial value or default value is ignored. To avoid simulation mismatches, explicitly drive this bit. 
+@W: CD796 :"syng0a00600":1037:9:1037:9|Bit 7 of signal e is undriven. Possible simulation mismatch as initial value or default value is ignored. To avoid simulation mismatches, explicitly drive this bit. 
+@W: CD796 :"syng0a00600":1037:9:1037:9|Bit 8 of signal e is undriven. Possible simulation mismatch as initial value or default value is ignored. To avoid simulation mismatches, explicitly drive this bit. 
+@N: CD630 :"syng0a00600":868:12:868:14|Synthesizing work.ao1.syn_black_box 
+Post processing for work.ao1.syn_black_box
+@N: CD630 :"syng0a00600":1145:7:1145:20|Synthesizing work.dwact_cmplt_po.fcomp 
+@N: CD630 :"syng0a00600":836:7:836:21|Synthesizing work.dwact_bl_fgcomp.fcomp 
+@W: CD796 :"syng0a00600":1037:9:1037:9|Bit 3 of signal e is undriven. Possible simulation mismatch as initial value or default value is ignored. To avoid simulation mismatches, explicitly drive this bit. 
+@W: CD796 :"syng0a00600":1037:9:1037:9|Bit 4 of signal e is undriven. Possible simulation mismatch as initial value or default value is ignored. To avoid simulation mismatches, explicitly drive this bit. 
+@W: CD796 :"syng0a00600":1037:9:1037:9|Bit 5 of signal e is undriven. Possible simulation mismatch as initial value or default value is ignored. To avoid simulation mismatches, explicitly drive this bit. 
+@W: CD796 :"syng0a00600":1037:9:1037:9|Bit 6 of signal e is undriven. Possible simulation mismatch as initial value or default value is ignored. To avoid simulation mismatches, explicitly drive this bit. 
+@W: CD796 :"syng0a00600":1037:9:1037:9|Bit 7 of signal e is undriven. Possible simulation mismatch as initial value or default value is ignored. To avoid simulation mismatches, explicitly drive this bit. 
+@W: CD796 :"syng0a00600":1037:9:1037:9|Bit 8 of signal e is undriven. Possible simulation mismatch as initial value or default value is ignored. To avoid simulation mismatches, explicitly drive this bit. 
+@N: CD630 :"syng0a00600":1145:7:1145:20|Synthesizing work.dwact_cmplt_po.fcomp 
+@N: CD630 :"syng0a00600":836:7:836:21|Synthesizing work.dwact_bl_fgcomp.fcomp 
+@W: CD638 :"syng0a00600":1037:9:1037:9|Signal e is undriven 
+@N: CD630 :"syng0a00600":571:7:571:21|Synthesizing work.dwact_tl_cmplt5.impl1 
+@W: CD280 :"syng0a00600":581:10:581:13|Unbound component OR2A mapped to black box
+@W: CD280 :"syng0a00600":589:10:589:14|Unbound component NOR2A mapped to black box
+@W: CD280 :"syng0a00600":597:10:597:13|Unbound component AO1C mapped to black box
+@W: CD280 :"syng0a00600":606:10:606:13|Unbound component OA1A mapped to black box
+@W: CD280 :"syng0a00600":615:10:615:12|Unbound component OA1 mapped to black box
+@W: CD638 :"syng0a00600":624:10:624:10|Signal e is undriven 
+@N: CD630 :"syng0a00600":615:10:615:12|Synthesizing work.oa1.syn_black_box 
+Post processing for work.oa1.syn_black_box
+@N: CD630 :"syng0a00600":606:10:606:13|Synthesizing work.oa1a.syn_black_box 
+Post processing for work.oa1a.syn_black_box
+@N: CD630 :"syng0a00600":597:10:597:13|Synthesizing work.ao1c.syn_black_box 
+Post processing for work.ao1c.syn_black_box
+@N: CD630 :"syng0a00600":581:10:581:13|Synthesizing work.or2a.syn_black_box 
+Post processing for work.or2a.syn_black_box
+@N: CD630 :"syng0a00600":589:10:589:14|Synthesizing work.nor2a.syn_black_box 
+Post processing for work.nor2a.syn_black_box
+Post processing for work.dwact_tl_cmplt5.impl1
+Post processing for work.dwact_bl_fgcomp.fcomp
+Post processing for work.dwact_cmplt_po.fcomp
+@N: CD630 :"syng0a00600":781:7:781:20|Synthesizing work.dwact_bl_equal.feq 
+@W: CD280 :"syng0a00600":808:12:808:16|Unbound component XNOR2 mapped to black box
+@N: CD630 :"syng0a00600":684:7:684:22|Synthesizing work.dwact_bl_andtree.ftree 
+@W: CD280 :"syng0a00600":707:12:707:15|Unbound component AND3 mapped to black box
+@W: CD280 :"syng0a00600":715:12:715:15|Unbound component AND2 mapped to black box
+@N: CD630 :"syng0a00600":647:7:647:19|Synthesizing work.dwact_andtree.fand 
+@N: CD630 :"syng0a00600":684:7:684:22|Synthesizing work.dwact_bl_andtree.ftree 
+@N: CD630 :"syng0a00600":715:12:715:15|Synthesizing work.and2.syn_black_box 
+Post processing for work.and2.syn_black_box
+Post processing for work.dwact_bl_andtree.ftree
+Post processing for work.dwact_andtree.fand
+@N: CD630 :"syng0a00600":707:12:707:15|Synthesizing work.and3.syn_black_box 
+Post processing for work.and3.syn_black_box
+Post processing for work.dwact_bl_andtree.ftree
+@N: CD630 :"syng0a00600":808:12:808:16|Synthesizing work.xnor2.syn_black_box 
+Post processing for work.xnor2.syn_black_box
+Post processing for work.dwact_bl_equal.feq
+Post processing for work.dwact_bl_fgcomp.fcomp
+Post processing for work.dwact_cmplt_po.fcomp
+@N: CD630 :"syng0a00600":1145:7:1145:20|Synthesizing work.dwact_cmplt_po.fcomp 
+@N: CD630 :"syng0a00600":836:7:836:21|Synthesizing work.dwact_bl_fgcomp.fcomp 
+@W: CD796 :"syng0a00600":1037:9:1037:9|Bit 3 of signal e is undriven. Possible simulation mismatch as initial value or default value is ignored. To avoid simulation mismatches, explicitly drive this bit. 
+@W: CD796 :"syng0a00600":1037:9:1037:9|Bit 4 of signal e is undriven. Possible simulation mismatch as initial value or default value is ignored. To avoid simulation mismatches, explicitly drive this bit. 
+@W: CD796 :"syng0a00600":1037:9:1037:9|Bit 5 of signal e is undriven. Possible simulation mismatch as initial value or default value is ignored. To avoid simulation mismatches, explicitly drive this bit. 
+@W: CD796 :"syng0a00600":1037:9:1037:9|Bit 6 of signal e is undriven. Possible simulation mismatch as initial value or default value is ignored. To avoid simulation mismatches, explicitly drive this bit. 
+@W: CD796 :"syng0a00600":1037:9:1037:9|Bit 7 of signal e is undriven. Possible simulation mismatch as initial value or default value is ignored. To avoid simulation mismatches, explicitly drive this bit. 
+@W: CD796 :"syng0a00600":1037:9:1037:9|Bit 8 of signal e is undriven. Possible simulation mismatch as initial value or default value is ignored. To avoid simulation mismatches, explicitly drive this bit. 
+@N: CD630 :"syng0a00600":1145:7:1145:20|Synthesizing work.dwact_cmplt_po.fcomp 
+@N: CD630 :"syng0a00600":836:7:836:21|Synthesizing work.dwact_bl_fgcomp.fcomp 
+@W: CD638 :"syng0a00600":1037:9:1037:9|Signal e is undriven 
+@N: CD630 :"syng0a00600":476:7:476:21|Synthesizing work.dwact_tl_cmplt4.impl1 
+@W: CD280 :"syng0a00600":513:10:513:14|Unbound component AND2A mapped to black box
+@W: CD280 :"syng0a00600":495:10:495:14|Unbound component AOI1A mapped to black box
+@W: CD796 :"syng0a00600":545:14:545:14|Bit 9 of signal e is undriven. Possible simulation mismatch as initial value or default value is ignored. To avoid simulation mismatches, explicitly drive this bit. 
+@N: CD630 :"syng0a00600":495:10:495:14|Synthesizing work.aoi1a.syn_black_box 
+Post processing for work.aoi1a.syn_black_box
+@N: CD630 :"syng0a00600":513:10:513:14|Synthesizing work.and2a.syn_black_box 
+Post processing for work.and2a.syn_black_box
+Post processing for work.dwact_tl_cmplt4.impl1
+Post processing for work.dwact_bl_fgcomp.fcomp
+Post processing for work.dwact_cmplt_po.fcomp
+@N: CD630 :"syng0a00600":1145:7:1145:20|Synthesizing work.dwact_cmplt_po.fcomp 
+@N: CD630 :"syng0a00600":836:7:836:21|Synthesizing work.dwact_bl_fgcomp.fcomp 
+@W: CD638 :"syng0a00600":1037:9:1037:9|Signal e is undriven 
+@N: CD630 :"syng0a00600":394:7:394:21|Synthesizing work.dwact_tl_cmplt3.impl1 
+Post processing for work.dwact_tl_cmplt3.impl1
+Post processing for work.dwact_bl_fgcomp.fcomp
+Post processing for work.dwact_cmplt_po.fcomp
+@N: CD630 :"syng0a00600":781:7:781:20|Synthesizing work.dwact_bl_equal.feq 
+@N: CD630 :"syng0a00600":684:7:684:22|Synthesizing work.dwact_bl_andtree.ftree 
+@W: CD796 :"syng0a00600":721:9:721:9|Bit 1 of signal e is undriven. Possible simulation mismatch as initial value or default value is ignored. To avoid simulation mismatches, explicitly drive this bit. 
+Post processing for work.dwact_bl_andtree.ftree
+Post processing for work.dwact_bl_equal.feq
+Post processing for work.dwact_bl_fgcomp.fcomp
+Post processing for work.dwact_cmplt_po.fcomp
+@N: CD630 :"syng0a00600":781:7:781:20|Synthesizing work.dwact_bl_equal.feq 
+@N: CD630 :"syng0a00600":684:7:684:22|Synthesizing work.dwact_bl_andtree.ftree 
+@N: CD630 :"syng0a00600":647:7:647:19|Synthesizing work.dwact_andtree.fand 
+Post processing for work.dwact_andtree.fand
+Post processing for work.dwact_bl_andtree.ftree
+Post processing for work.dwact_bl_equal.feq
+Post processing for work.dwact_bl_fgcomp.fcomp
+Post processing for work.cmp_lt.fcomp
+Post processing for work.top.gen

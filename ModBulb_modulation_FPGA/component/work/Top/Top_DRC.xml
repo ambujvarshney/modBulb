@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?xml-stylesheet type="text/xsl" href="drcss.xsl"?>
+<drcreport>
+  <header>Top</header>
+  <drc>
+    <status>C:\Microsemi\Libero_SoC_v11.7\Designer/data/drcreport\error.png</status>
+    <StatusMessage>Error</StatusMessage>
+    <message>Undriven Pin</message>
+    <detail>Unconnected top level output port Top:SIGNAL_OUT</detail>
+    <crossprobe>liberoaction://cross_probe/smartdesign/Top/pins/Top:SIGNAL_OUT</crossprobe>
+  </drc>
+  <drc>
+    <status>C:\Microsemi\Libero_SoC_v11.7\Designer/data/drcreport\error.png</status>
+    <StatusMessage>Error</StatusMessage>
+    <message>Undriven Pin</message>
+    <detail>Unconnected top level output port Top:MOD_EN</detail>
+    <crossprobe>liberoaction://cross_probe/smartdesign/Top/pins/Top:MOD_EN</crossprobe>
+  </drc>
+  <drc>
+    <status>C:\Microsemi\Libero_SoC_v11.7\Designer/data/drcreport\error.png</status>
+    <StatusMessage>Error</StatusMessage>
+    <message>Undriven Pin</message>
+    <detail>Unconnected input pin AND2_0:B</detail>
+    <crossprobe>liberoaction://cross_probe/smartdesign/Top/pins/AND2_0:B</crossprobe>
+  </drc>
+  <drc>
+    <status>C:\Microsemi\Libero_SoC_v11.7\Designer/data/drcreport\warn.png</status>
+    <StatusMessage>Warning</StatusMessage>
+    <message>Floating Driver</message>
+    <detail>Floating output pin RAM_0:RD</detail>
+    <crossprobe>liberoaction://cross_probe/smartdesign/Top/pins/RAM_0:RD</crossprobe>
+  </drc>
+  <drc>
+    <status>C:\Microsemi\Libero_SoC_v11.7\Designer/data/drcreport\error.png</status>
+    <StatusMessage>Error</StatusMessage>
+    <message>Undriven Pin</message>
+    <detail>Unconnected input pin RAM_0:REN</detail>
+    <crossprobe>liberoaction://cross_probe/smartdesign/Top/pins/RAM_0:REN</crossprobe>
+  </drc>
+  <drc>
+    <status>C:\Microsemi\Libero_SoC_v11.7\Designer/data/drcreport\error.png</status>
+    <StatusMessage>Error</StatusMessage>
+    <message>Undriven Pin</message>
+    <detail>Unconnected input pin WADDR</detail>
+    <crossprobe>liberoaction://cross_probe/smartdesign/Top/pins/RAM_0:WADDR</crossprobe>
+  </drc>
+  <drc>
+    <status>C:\Microsemi\Libero_SoC_v11.7\Designer/data/drcreport\error.png</status>
+    <StatusMessage>Error</StatusMessage>
+    <message>Undriven Pin</message>
+    <detail>Unconnected input pin RADDR</detail>
+    <crossprobe>liberoaction://cross_probe/smartdesign/Top/pins/RAM_0:RADDR</crossprobe>
+  </drc>
+</drcreport>

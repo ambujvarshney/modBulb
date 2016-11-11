@@ -1,0 +1,122 @@
+----------------------------------------------------------------------
+Report for cell Top.rtl
+                                          Cell usage:
+                               cell       count     area    count*area
+                               AND2         1       1.0        1.0
+                               BUFF         1       1.0        1.0
+                             CLKBUF         2       0.0        0.0
+                                GND         1       0.0        0.0
+                              INBUF         3       0.0        0.0
+                          Modulator         1    1286.0     1286.0
+                             OUTBUF         3       0.0        0.0
+                                RAM         1      31.0       31.0
+                                VCC         1       0.0        0.0
+                          spi_slave         1      78.0       78.0
+                            
+                         TOTAL             15               1397.0
+----------------------------------------------------------------------
+Report for cell spi_slave.netlist
+     Instance path:  spi_slave_0
+                                          Cell usage:
+                               cell       count     area    count*area
+                              AXOI3         1       1.0        1.0
+                              AXOI4         1       1.0        1.0
+                               DFN0         1       1.0        1.0
+                             DFN0P1         1       1.0        1.0
+                               DFN1        21       1.0       21.0
+                             DFN1C1         5       1.0        5.0
+                             DFN1E0         1       1.0        1.0
+                             DFN1E1        16       1.0       16.0
+                                GND         1       0.0        0.0
+                                MX2         1       1.0        1.0
+                               MX2B         2       1.0        2.0
+                               NOR2         2       1.0        2.0
+                              NOR2A         4       1.0        4.0
+                               NOR3         2       1.0        2.0
+                              NOR3B         2       1.0        2.0
+                               OA1A        16       1.0       16.0
+                               OA1C         1       1.0        1.0
+                                VCC         1       0.0        0.0
+                               XA1B         1       1.0        1.0
+                            
+                         TOTAL             80                 78.0
+----------------------------------------------------------------------
+Report for cell RAM.netlist
+     Instance path:  RAM_0
+                                          Cell usage:
+                               cell       count     area    count*area
+                               BUFF         4       1.0        4.0
+                               DFN1         2       1.0        2.0
+                           DFN1E1C0         1       1.0        1.0
+                                GND         1       0.0        0.0
+                                INV         3       1.0        3.0
+                                MX2        16       1.0       16.0
+                                OR2         3       1.0        3.0
+                               OR2A         2       1.0        2.0
+                          RAM512X18         2       0.0        0.0
+                                VCC         1       0.0        0.0
+                            
+                         TOTAL             35                 31.0
+----------------------------------------------------------------------
+Report for cell Modulator.netlist
+     Instance path:  Modulator_0
+                                          Cell usage:
+                               cell       count     area    count*area
+                               AND2        26       1.0       26.0
+                              AND2A         4       1.0        4.0
+                               AND3         8       1.0        8.0
+                                AO1        48       1.0       48.0
+                               AO1A         8       1.0        8.0
+                               AO1B         2       1.0        2.0
+                               AO1C        16       1.0       16.0
+                               AOI1         2       1.0        2.0
+                              AOI1A         8       1.0        8.0
+                              AOI1B         1       1.0        1.0
+                                AX1        15       1.0       15.0
+                               AX1A         1       1.0        1.0
+                               AX1B         1       1.0        1.0
+                               AX1C        10       1.0       10.0
+                               AX1D         6       1.0        6.0
+                               DFN1        20       1.0       20.0
+                             DFN1C0         2       1.0        2.0
+                             DFN1E0         9       1.0        9.0
+                           DFN1E0C0         2       1.0        2.0
+                             DFN1E1       245       1.0      245.0
+                           DFN1E1C0         9       1.0        9.0
+                                GND         1       0.0        0.0
+                                INV         1       1.0        1.0
+                               MAJ3         2       1.0        2.0
+                                MX2        94       1.0       94.0
+                               MX2A         2       1.0        2.0
+                               MX2B         1       1.0        1.0
+                               MX2C         6       1.0        6.0
+                               NOR2        26       1.0       26.0
+                              NOR2A        49       1.0       49.0
+                              NOR2B        47       1.0       47.0
+                               NOR3        13       1.0       13.0
+                              NOR3A        24       1.0       24.0
+                              NOR3B        27       1.0       27.0
+                              NOR3C        21       1.0       21.0
+                                OA1         5       1.0        5.0
+                               OA1A         9       1.0        9.0
+                               OA1B         2       1.0        2.0
+                               OA1C         3       1.0        3.0
+                               OAI1         1       1.0        1.0
+                                OR2        59       1.0       59.0
+                               OR2A        55       1.0       55.0
+                               OR2B        11       1.0       11.0
+                                OR3        85       1.0       85.0
+                               OR3A         2       1.0        2.0
+                               OR3B         1       1.0        1.0
+                               OR3C         3       1.0        3.0
+                                VCC         1       0.0        0.0
+                                XA1        21       1.0       21.0
+                               XA1A        29       1.0       29.0
+                               XA1B        10       1.0       10.0
+                               XA1C        14       1.0       14.0
+                              XNOR2        64       1.0       64.0
+                                XO1        25       1.0       25.0
+                               XO1A         2       1.0        2.0
+                               XOR2       129       1.0      129.0
+                            
+                         TOTAL           1288               1286.0

@@ -1,0 +1,17 @@
+@N: MF248 |Running in 64-bit mode.
+@N: MF667 |Clock conversion disabled 
+@N: BN362 :"c:\users\abdullah\projects\fpga\workplace\modbulb_modulation_fpga\hdl\spi_slave.vhd":224:37:224:39|Removing sequential instance wr_ack_reg of view:PrimLib.dff(prim) in hierarchy view:work.spi_slave(rtl) because there are no references to its outputs 
+@N: BN362 :"c:\users\abdullah\projects\fpga\workplace\modbulb_modulation_fpga\hdl\spi_slave.vhd":307:8:307:9|Removing sequential instance wren of view:PrimLib.sdffse(prim) in hierarchy view:work.spi_slave(rtl) because there are no references to its outputs 
+@N: MF179 :"c:\users\abdullah\projects\fpga\workplace\modbulb_modulation_fpga\hdl\modulator.vhd":141:25:141:52|Found 16 bit by 16 bit '<' comparator, 'un64_spi_dvld'
+@N: MF176 |Default generator successful 
+@N: MF239 :"c:\users\abdullah\projects\fpga\workplace\modbulb_modulation_fpga\hdl\modulator.vhd":112:36:112:67|Found 16-bit decrementor, 'un15_spi_dvld[15:0]'
+@N: MF239 :"c:\users\abdullah\projects\fpga\workplace\modbulb_modulation_fpga\hdl\modulator.vhd":221:22:221:67|Found 17-bit decrementor, 'un22_mod_enabled[16:32]'
+@N: MF239 :"c:\users\abdullah\projects\fpga\workplace\modbulb_modulation_fpga\hdl\modulator.vhd":306:24:306:69|Found 17-bit decrementor, 'un328_mod_enabled[16:32]'
+@N: MF179 :"c:\users\abdullah\projects\fpga\workplace\modbulb_modulation_fpga\hdl\modulator.vhd":306:9:306:69|Found 17 bit by 17 bit '<' comparator, 'un331_mod_enabled'
+@N: MF179 :"c:\users\abdullah\projects\fpga\workplace\modbulb_modulation_fpga\hdl\modulator.vhd":310:10:310:42|Found 17 bit by 17 bit '<' comparator, 'un340_mod_enabled'
+@N: FP130 |Promoting Net CLK_c on CLKBUF  CLK_pad 
+@N: FP130 |Promoting Net spi_sck_i_c on CLKBUF  spi_sck_i_pad 
+@N: MT320 |Timing report estimates place and route data. Please look at the place and route timing report for final timing.
+@N: MT322 |Clock constraints cover only FF-to-FF paths associated with the clock.
+@N: MT320 |Timing report estimates place and route data. Please look at the place and route timing report for final timing.
+@N: MT322 |Clock constraints cover only FF-to-FF paths associated with the clock.

@@ -1,0 +1,84 @@
+Microsemi Libero Software
+Version: 11.7.0.119
+Release: v11.7
+
+'IDE_DESIGNERVIEW_ROOTDIR' set to
+'C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\designer'
+Info: The design Top.adb was last modified by software version 11.7.0.119.
+Opened an existing Libero design Top.adb.
+
+The Execute Script command succeeded ( 00:00:24 )
+***** Layout Variables *********************************************
+
+Mode: TIMING_DRIVEN
+Power-driven Layout: OFF
+Incremental Placement: OFF
+Incremental Route: OFF
+
+
+
+Running I/O Bank Assigner.
+
+I/O Bank Assigner completed successfully.
+ 
+
+Planning global net placement...
+Info: PLC007: Created quadrant global region Qclock_spi_sck_i_c for global net spi_sck_i_c.
+
+
+
+Global net placement completed successfully.
+
+                        o - o - o - o - o - o
+
+Timing-driven Placer Started: Fri Nov 11 11:46:35 2016
+
+Placer Finished: Fri Nov 11 11:46:59 2016
+Total Placer CPU Time:     00:00:24
+
+                        o - o - o - o - o - o
+
+
+Timing-driven Router 
+Design: Top                             Started: Fri Nov 11 11:47:01 2016
+
+ 
+Iterative improvement...
+
+Timing-driven Router completed successfully.
+
+Design: Top                             
+Finished: Fri Nov 11 11:47:13 2016
+Total CPU Time:     00:00:11            Total Elapsed Time: 00:00:12
+Total Memory Usage: 121.2 Mbytes
+                        o - o - o - o - o - o
+
+Loading the Timing data for the design.
+Finished loading the Timing data.
+TIMER: Max delay timing requirements have been met.
+TIMER: Min delay timing requirements have been met.
+
+The Layout command succeeded ( 00:00:43 )
+
+The Export-map command succeeded ( 00:00:06 )
+Wrote to the file:
+C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\designer\impl1\Top.dat
+CHECKSUM: 1616
+
+The Generate programming file command succeeded ( 00:00:50 )
+Design saved to file
+C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\designer\impl1\Top.adb.
+Wrote pin report to file:
+C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\designer\impl1\Top_report_pin\
+_byname.txt
+
+The Report command succeeded ( 00:00:00 )
+Wrote pin report to file:
+C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\designer\impl1\Top_report_pin\
+_bynumber.txt
+
+The Report command succeeded ( 00:00:01 )
+
+The Execute Script command succeeded ( 00:00:01 )
+Design closed.
+

@@ -1,0 +1,11 @@
+C:\Microsemi\Libero_SoC_v11.7\Synplify\bin64\c_hdl.exe  -osyn  C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\synwork\Top_comp.srs  -top  work.Top  -hdllog  C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\synlog\Top_compiler.srr  -encrypt  -mp  1  -vhdl  -prodtype  synplify_pro  -nram -fixsmult -divnmod  -encrypt  -pro  -dmgen  C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\dm  -lite -ui -fid2 -ram -sharing on -ll 2000 -autosm  -vhdl2008  -ignore_undefined_lib  -lib work C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\hdl\Command_Pkg.vhd -lib work C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\hdl\Modulator.vhd -lib work C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\smartgen\RAM\RAM.vhd -lib work C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\hdl\spi_slave.vhd -lib work C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\component\work\Top\Top.vhd 
+rc:0 success:1
+C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\synwork\Top_comp.srs|o|1478860855|28300
+C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\synlog\Top_compiler.srr|o|1478860855|14512
+C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\hdl\Command_Pkg.vhd|i|1478860042|1318
+C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\hdl\Modulator.vhd|i|1478860596|11136
+C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\smartgen\RAM\RAM.vhd|i|1478860152|16099
+C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\hdl\spi_slave.vhd|i|1478860042|34794
+C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\component\work\Top\Top.vhd|i|1478860851|6889
+C:\Microsemi\Libero_SoC_v11.7\Synplify\bin\c_hdl.exe|i|1449246922|1295872
+C:\Microsemi\Libero_SoC_v11.7\Synplify\bin64\c_hdl.exe|i|1449246924|1897472

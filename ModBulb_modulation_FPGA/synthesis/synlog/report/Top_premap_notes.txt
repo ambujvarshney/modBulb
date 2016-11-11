@@ -1,0 +1,9 @@
+@N: MF248 |Running in 64-bit mode.
+@N: MF667 |Clock conversion disabled 
+@N: BN362 :"c:\users\abdullah\projects\fpga\workplace\modbulb_modulation_fpga\hdl\spi_slave.vhd":237:37:237:39|Removing sequential instance di_req_o_reg of view:PrimLib.dff(prim) in hierarchy view:work.spi_slave(rtl) because there are no references to its outputs 
+@N: BN362 :"c:\users\abdullah\projects\fpga\workplace\modbulb_modulation_fpga\hdl\spi_slave.vhd":236:37:236:39|Removing sequential instance di_req_o_D of view:PrimLib.dff(prim) in hierarchy view:work.spi_slave(rtl) because there are no references to its outputs 
+@N: BN362 :"c:\users\abdullah\projects\fpga\workplace\modbulb_modulation_fpga\hdl\spi_slave.vhd":235:37:235:39|Removing sequential instance di_req_o_C of view:PrimLib.dff(prim) in hierarchy view:work.spi_slave(rtl) because there are no references to its outputs 
+@N: BN362 :"c:\users\abdullah\projects\fpga\workplace\modbulb_modulation_fpga\hdl\spi_slave.vhd":234:37:234:39|Removing sequential instance di_req_o_B of view:PrimLib.dff(prim) in hierarchy view:work.spi_slave(rtl) because there are no references to its outputs 
+@N: BN362 :"c:\users\abdullah\projects\fpga\workplace\modbulb_modulation_fpga\hdl\spi_slave.vhd":231:41:231:43|Removing sequential instance di_req_o_A of view:PrimLib.dff(prim) in hierarchy view:work.spi_slave(rtl) because there are no references to its outputs 
+@N: BN362 :"c:\users\abdullah\projects\fpga\workplace\modbulb_modulation_fpga\hdl\spi_slave.vhd":221:42:221:44|Removing sequential instance di_req_reg of view:PrimLib.dff(prim) in hierarchy view:work.spi_slave(rtl) because there are no references to its outputs 
+@N: BN225 |Writing default property annotation file C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\Top.sap.

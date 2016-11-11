@@ -1,0 +1,61 @@
+#add_file options
+add_file -vhdl "C:/Users/Abdullah/Projects/FPGA/Workplace/ModBulb_modulation_FPGA/hdl/Command_Pkg.vhd"
+add_file -vhdl "C:/Users/Abdullah/Projects/FPGA/Workplace/ModBulb_modulation_FPGA/hdl/Modulator.vhd"
+add_file -vhdl "C:/Users/Abdullah/Projects/FPGA/Workplace/ModBulb_modulation_FPGA/smartgen/RAM/RAM.vhd"
+add_file -vhdl "C:/Users/Abdullah/Projects/FPGA/Workplace/ModBulb_modulation_FPGA/hdl/spi_slave.vhd"
+add_file -vhdl "C:/Users/Abdullah/Projects/FPGA/Workplace/ModBulb_modulation_FPGA/component/work/Top/Top.vhd"
+
+
+
+#project files
+
+
+#implementation: "synthesis"
+impl -add synthesis -type fpga
+
+set_option -vhdl2008 0
+
+#device options
+set_option -technology IGLOO
+set_option -part AGLN060V5
+set_option -package VQFP100
+set_option -speed_grade STD
+#compilation/mapping options
+set_option -use_fsm_explorer 0
+set_option -top_module work.Top
+
+# mapper_options
+set_option -frequency 20.000000
+set_option -write_verilog 0
+set_option -write_vhdl 0
+set_option -srs_instrumentation 1
+
+# actel_options
+set_option -rw_check_on_ram 0
+
+# Microsemi 500K
+set_option -run_prop_extract 1
+set_option -maxfan 24
+set_option -retiming 0
+set_option -report_path 4000
+set_option -update_models_cp 0
+set_option -preserve_registers 0
+# Microsemi 500K
+set_option -globalthreshold 50
+
+# sequential_optimization_options
+set_option -symbolic_fsm_compiler 1
+
+# Compiler Options
+set_option -compiler_compatible 0
+set_option -resource_sharing 1
+
+# Compiler Options
+set_option -auto_infer_blackbox 0
+
+#automatic place and route (vendor) options
+set_option -write_apr_constraint 1
+
+#set result format/file last
+project -result_file "./Top.edn"
+impl -active "synthesis"

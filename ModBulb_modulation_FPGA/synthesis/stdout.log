@@ -1,0 +1,39 @@
+sourcing C:\Microsemi\Libero_SoC_v11.7\Synplify\lib\message_override.tcl
+
+Starting:    C:\Microsemi\Libero_SoC_v11.7\Synplify\bin64\mbin\synplify.exe
+Install:     C:\Microsemi\Libero_SoC_v11.7\Synplify
+Hostname:    DESKTOP-B8QPEOE
+Date:        Fri Nov 11 11:35:52 2016
+Version:     J-2015.03M-SP1-2
+
+Arguments:   -product synplify_pro Top_syn.prj
+ProductType: synplify_pro
+
+License checkout: synplifypro_actel
+License: synplifypro_actel node-locked 
+Licensed Vendor: actel
+License Option: actel_oem
+
+
+auto_infer_blackbox is not supported in current product.
+OnSyncomMessage()
+OnSyncomMessage()
+Copied C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\Top.srr to C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\backup\Top.srr
+log file: "C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\Top.srr"
+Running: synthesis in foreground
+
+Running Top_syn|synthesis
+
+Running: compile (Compile) on Top_syn|synthesis
+
+Running: compile_flow (Compile Process) on Top_syn|synthesis
+
+Running: compiler (Compile Input) on Top_syn|synthesis
+compiler exited with errors
+
+Job: "compiler" terminated with error status: 2
+See log file: "C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\synlog\Top_compiler.srr"
+Return Code: 2
+Run Time:0h:00m:00s
+exit status=2
+License checkin: synplifypro_actel

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?xml-stylesheet type="text/xsl" href="datasheet.xsl"?>
+<datasheet>
+  <header>Top</header>
+  <project-settings>
+    <fam>IGLOO</fam>
+    <die>AGLN060V5</die>
+    <package>100 VQFP</package>
+    <speed-grade>STD</speed-grade>
+    <voltage>1.5</voltage>
+    <hdl-type>VHDL</hdl-type>
+    <project-description>
+    </project-description>
+    <location>C:/Users/Abdullah/Projects/FPGA/Workplace/ModBulb_modulation_FPGA/component/work/Top</location>
+    <state>GENERATED ( Fri Nov 11 11:39:45 2016 )</state>
+    <swide-toolchain>SoftConsole workspace has not been generated</swide-toolchain>
+  </project-settings>
+  <site-map>
+  </site-map>
+  <fileset>
+    <name>HDL File(s)</name>
+    <file>C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\component\work\Top\Top.vhd</file>
+    <file>C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\hdl\Command_Pkg.vhd</file>
+    <file>C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\hdl\Modulator.vhd</file>
+    <file>C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\hdl\spi_slave.vhd</file>
+    <file>C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\smartgen\RAM\RAM.vhd</file>
+  </fileset>
+  <io>
+    <port-name>CLK</port-name>
+    <direction>IN</direction>
+    <pin-number>-</pin-number>
+    <io-standard>LVCMOS15</io-standard>
+  </io>
+  <io>
+    <port-name>spi_miso_o</port-name>
+    <direction>OUT</direction>
+    <pin-number>-</pin-number>
+    <io-standard>LVCMOS15</io-standard>
+  </io>
+  <io>
+    <port-name>spi_ssel_i</port-name>
+    <direction>IN</direction>
+    <pin-number>-</pin-number>
+    <io-standard>LVCMOS15</io-standard>
+  </io>
+  <io>
+    <port-name>spi_sck_i</port-name>
+    <direction>IN</direction>
+    <pin-number>-</pin-number>
+    <io-standard>LVCMOS15</io-standard>
+  </io>
+  <io>
+    <port-name>MOD_EN</port-name>
+    <direction>OUT</direction>
+    <pin-number>-</pin-number>
+    <io-standard>LVCMOS15</io-standard>
+  </io>
+  <io>
+    <port-name>spi_mosi_i</port-name>
+    <direction>IN</direction>
+    <pin-number>-</pin-number>
+    <io-standard>LVCMOS15</io-standard>
+  </io>
+  <io>
+    <port-name>RESET_N</port-name>
+    <direction>IN</direction>
+    <pin-number>-</pin-number>
+    <io-standard>LVCMOS15</io-standard>
+  </io>
+  <io>
+    <port-name>SIGNAL_OUT</port-name>
+    <direction>OUT</direction>
+    <pin-number>-</pin-number>
+    <io-standard>LVCMOS15</io-standard>
+  </io>
+  <core type="AdlibModule">
+    <core-type>AdlibModule</core-type>
+    <core-exttype>AND2</core-exttype>
+    <core-name>AND2_0</core-name>
+  </core>
+  <core type="HdlModule">
+    <core-type>HdlModule</core-type>
+    <core-exttype>Modulator</core-exttype>
+    <core-location>hdl\Modulator.vhd</core-location>
+    <core-name>Modulator_0</core-name>
+  </core>
+  <core type="ComponentModule">
+    <core-type>ComponentModule</core-type>
+    <core-exttype>SmartGen</core-exttype>
+    <core-location>C:/Users/Abdullah/Projects/FPGA/Workplace/ModBulb_modulation_FPGA/smartgen/RAM</core-location>
+    <core-name>RAM_0</core-name>
+  </core>
+  <core type="HdlModule">
+    <core-type>HdlModule</core-type>
+    <core-exttype>spi_slave</core-exttype>
+    <core-location>hdl\spi_slave.vhd</core-location>
+    <core-name>spi_slave_0</core-name>
+  </core>
+  <memorysystem>
+    <title>Memory Map for Top</title>
+    <description>The project does not contain any subsystems.</description>
+  </memorysystem>
+</datasheet>

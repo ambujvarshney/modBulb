@@ -1,0 +1,316 @@
+KEY LIBERO "11.7"
+KEY CAPTURE "11.7.0.119"
+KEY DEFAULT_IMPORT_LOC "C:\Users\LAB\Desktop"
+KEY ProjectID "0"
+KEY HDLTechnology "VHDL"
+KEY UseConstraintFlowTechnology "FALSE"
+KEY VendorTechnology_Family "IGLOO"
+KEY VendorTechnology_Die "UM2X2M1NLP"
+KEY VendorTechnology_Package "vq100"
+KEY VendorTechnology_Speed "STD"
+KEY VendorTechnology_DieVoltage "1.5"
+KEY VendorTechnology_PART_RANGE "COM"
+KEY VendorTechnology_IO_DEFT_STD "LVCMOS15"
+KEY VendorTechnology_RESERVEMIGRATIONPINS "1"
+KEY VendorTechnology_RESTRICTPROBEPINS "1"
+KEY VendorTechnology_RESTRICTSPIPINS "0"
+KEY VendorTechnology_TARGETDEVICESFORMIGRATION "UM2X2M1NLP"
+KEY VendorTechnology_TEMPR "COM"
+KEY VendorTechnology_UNUSED_MSS_IO_RESISTOR_PULL "None"
+KEY VendorTechnology_VCCI_1.5_VOLTR "COM"
+KEY VendorTechnology_VCCI_1.8_VOLTR "COM"
+KEY VendorTechnology_VCCI_2.5_VOLTR "COM"
+KEY VendorTechnology_VCCI_3.3_VOLTR "COM"
+KEY VendorTechnology_VOLTR "COM"
+KEY ProjectLocation "C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA"
+KEY ProjectDescription ""
+KEY Pa4PeripheralNewSeq "GOOD"
+KEY SimulationType "VHDL"
+KEY Vendor "Actel"
+KEY ActiveRoot "Top::work"
+LIST REVISIONS
+VALUE="Impl1",NUM=1
+CURREV=1
+ENDLIST
+LIST FileManager
+VALUE "<project>\component\work\Top\Top.cxf,actgen_cxf"
+STATE="utd"
+TIME="1478860786"
+SIZE="2782"
+ENDFILE
+VALUE "<project>\component\work\Top\Top.vhd,hdl"
+STATE="utd"
+TIME="1478860851"
+SIZE="6889"
+PARENT="<project>\component\work\Top\Top.cxf"
+ENDFILE
+VALUE "<project>\designer\impl1\Top.adb,adb"
+STATE="utd"
+TIME="1478860896"
+SIZE="487936"
+ENDFILE
+VALUE "<project>\designer\impl1\Top.ide_des,ide_des"
+STATE="utd"
+TIME="1478860013"
+SIZE="220"
+ENDFILE
+VALUE "<project>\designer\impl1\Top_compile_log.rpt,log"
+STATE="utd"
+TIME="1478860897"
+SIZE="9404"
+ENDFILE
+VALUE "<project>\hdl\Command_Pkg.vhd,hdl"
+STATE="utd"
+TIME="1478860042"
+SIZE="1318"
+ENDFILE
+VALUE "<project>\hdl\Modulator.vhd,hdl"
+STATE="utd"
+TIME="1478860596"
+SIZE="11136"
+ENDFILE
+VALUE "<project>\hdl\spi_slave.vhd,hdl"
+STATE="utd"
+TIME="1478860042"
+SIZE="34794"
+ENDFILE
+VALUE "<project>\smartgen\RAM\RAM.cxf,actgen_cxf"
+STATE="utd"
+TIME="1478860154"
+SIZE="2152"
+ENDFILE
+VALUE "<project>\smartgen\RAM\RAM.gen,gen"
+STATE="utd"
+TIME="1478860151"
+SIZE="724"
+PARENT="<project>\smartgen\RAM\RAM.cxf"
+IS_READONLY="TRUE"
+ENDFILE
+VALUE "<project>\smartgen\RAM\RAM.log,log"
+STATE="utd"
+TIME="1478860152"
+SIZE="3159"
+PARENT="<project>\smartgen\RAM\RAM.cxf"
+IS_READONLY="TRUE"
+ENDFILE
+VALUE "<project>\smartgen\RAM\RAM.vhd,hdl"
+STATE="utd"
+TIME="1478860152"
+SIZE="16099"
+PARENT="<project>\smartgen\RAM\RAM.cxf"
+IS_READONLY="TRUE"
+ENDFILE
+VALUE "<project>\synthesis\synwork\layer0.so,so"
+STATE="utd"
+TIME="1478860431"
+SIZE="159"
+ENDFILE
+VALUE "<project>\synthesis\Top.edn,syn_edn"
+STATE="utd"
+TIME="1478860862"
+SIZE="627790"
+ENDFILE
+VALUE "<project>\synthesis\Top.so,so"
+STATE="utd"
+TIME="1478860862"
+SIZE="241"
+ENDFILE
+VALUE "<project>\synthesis\Top_sdc.sdc,syn_sdc"
+STATE="utd"
+TIME="1478860862"
+SIZE="488"
+ENDFILE
+VALUE "<project>\synthesis\Top_syn.prj,prj"
+STATE="utd"
+TIME="1478860401"
+SIZE="1101"
+ENDFILE
+ENDLIST
+LIST UsedFile
+ENDLIST
+LIST NewModulesInfo
+LIST "Top::work"
+FILE "<project>\component\work\Top\Top.vhd,hdl"
+LIST ProjectState5.1
+LIST Impl1
+LiberoState=Post_Layout
+ideDESIGNER(<project>\designer\impl1\Top.adb,adb)=StateSuccess
+ideSYNTHESIS(<project>\synthesis\Top.edn,syn_edn)=StateSuccess
+ideSYNTHESIS(<project>\synthesis\Top.vm,syn_vm)=StateFailure
+LIST FlowOptions
+UsePhySynth=FALSE
+UseSynth=TRUE
+ENDLIST
+Used_File_List
+ENDUsed_File_List
+ENDLIST
+ENDLIST
+LIST PinReports
+VALUE "<project>\designer\impl1\Top_report_pin_byname.txt,log"
+VALUE "<project>\designer\impl1\Top_report_pin_bynumber.txt,log"
+ENDLIST
+ENDLIST
+ENDLIST
+LIST AssociatedStimulus
+ENDLIST
+LIST Other_Association
+ENDLIST
+LIST SimulationOptions
+UseAutomaticDoFile=true
+IncludeWaveDo=false
+Type=max
+RunTime=1000ns
+Resolution=1ps
+VsimOpt=
+EntityName=testbench
+TopInstanceName=<top>_0
+DoFileName=
+DoFileName2=wave.do
+DoFileParams=
+DisplayDUTWave=false
+LogAllSignals=false
+DisablePulseFiltering=false
+DumpVCD=false
+VCDFileName=power.vcd
+VHDL2008=false
+Verilog2001=false
+SystemVerilog=false
+TimeUnit=1
+TimeUnitBase=ns
+Precision=100
+PrecisionBase=ps
+ENDLIST
+LIST ModelSimLibPath
+UseCustomPath=FALSE
+LibraryPath=
+ENDLIST
+LIST GlobalFlowOptions
+GenerateHDLAfterSynthesis=FALSE
+GenerateHDLAfterPhySynthesis=FALSE
+RunDRCAfterSynthesis=FALSE
+AutoCheckConstraints=TRUE
+UpdateModelSimIni=TRUE
+NoIOMode=FALSE
+PeriInitStandalone=FALSE
+EnableViewDraw=FALSE
+UpdateViewDrawIni=TRUE
+GenerateHDLFromSchematic=TRUE
+VmNetlistFlowOn=FALSE
+EnableDesignSeparationOn=FALSE
+EnableSETMitigationOn=FALSE
+DisplayFanoutLimit=10
+AbortFlowOnPDCErrorsOn=TRUE
+AbortFlowOnSDCErrorsOn=TRUE
+FlashProInputFile=pdb
+SmartGenCompileReport=T
+ENDLIST
+LIST PhySynthesisOptions
+ENDLIST
+LIST Profiles
+NAME="SoftConsole"
+FUNCTION="SoftwareIDE"
+TOOL="SoftConsole"
+LOCATION="eclipse.exe"
+PARAM=""
+BATCH=0
+LICENSE=""
+IS32BIT="1"
+EndProfile
+NAME="Synplify Pro ME"
+FUNCTION="Synthesis"
+TOOL="Synplify Pro ME"
+LOCATION="C:\Microsemi\Libero_SoC_v11.7\\\Synplify\\bin\synplify_pro.exe"
+PARAM="-licensetype synplifypro_actel -batch -log synplify.log"
+BATCH=1
+LICENSE=""
+IS32BIT="1"
+EndProfile
+NAME="ModelSim ME"
+FUNCTION="Simulation"
+TOOL="ModelSim"
+LOCATION="C:\Microsemi\Libero_SoC_v11.7\\\Model\\win32acoem\modelsim.exe"
+PARAM=""
+BATCH=0
+LICENSE=""
+IS32BIT="1"
+EndProfile
+NAME="FlashPro"
+FUNCTION="Program"
+TOOL="FlashPro"
+LOCATION="C:\Microsemi\Libero_SoC_v11.7\\\Designer\\bin\flashpro.exe"
+PARAM=""
+BATCH=0
+LICENSE=""
+IS32BIT="1"
+EndProfile
+NAME="Identify Debugger"
+FUNCTION="IdentifyDebugger"
+TOOL="Identify Debugger"
+LOCATION="C:\Microsemi\Libero_SoC_v11.7\\\Identify\\bin\identify_debugger.exe"
+PARAM=""
+BATCH=0
+LICENSE=""
+IS32BIT="1"
+EndProfile
+ENDLIST
+LIST ProjectState5.1
+LIST "Top::work"
+LIST Impl1
+LiberoState=Post_Layout
+ideDESIGNER(<project>\designer\impl1\Top.adb,adb)=StateSuccess
+ideSYNTHESIS(<project>\synthesis\Top.edn,syn_edn)=StateSuccess
+ideSYNTHESIS(<project>\synthesis\Top.vm,syn_vm)=StateFailure
+LIST FlowOptions
+UsePhySynth=FALSE
+UseSynth=TRUE
+ENDLIST
+Used_File_List
+ENDUsed_File_List
+ENDLIST
+ENDLIST
+ENDLIST
+LIST ExcludePackageForSimulation
+ENDLIST
+LIST ExcludePackageForSynthesis
+ENDLIST
+LIST IncludeModuleForSimulation
+ENDLIST
+LIST CDBOrder
+ENDLIST
+LIST UserCustomizedFileList
+ENDLIST
+LIST OpenedFileList
+ORIENTATION;HORIZONTAL
+Reports;Reports;0
+ReportsCurrentItem;Compile:Top_compile_log.rpt
+StartPage;StartPage;0
+SmartDesign;Top;0
+HDL;hdl\Modulator.vhd;0
+HDL;component\work\Top\Top.vhd;0
+ACTIVEVIEW;Reports
+ENDLIST
+LIST ModuleSubBlockList
+LIST "Command_Pkg::work","hdl\Command_Pkg.vhd","FALSE","FALSE"
+ENDLIST
+LIST "Modulator::work","hdl\Modulator.vhd","FALSE","FALSE"
+ENDLIST
+LIST "RAM::work","smartgen\RAM\RAM.vhd","TRUE","FALSE"
+ENDLIST
+LIST "spi_slave::work","hdl\spi_slave.vhd","FALSE","FALSE"
+ENDLIST
+LIST "Top::work","component\work\Top\Top.vhd","TRUE","FALSE"
+SUBBLOCK "Modulator::work","hdl\Modulator.vhd","FALSE","FALSE"
+SUBBLOCK "RAM::work","smartgen\RAM\RAM.vhd","TRUE","FALSE"
+SUBBLOCK "spi_slave::work","hdl\spi_slave.vhd","FALSE","FALSE"
+ENDLIST
+ENDLIST
+LIST ActiveTestBenchList
+ENDLIST
+LIST IOTabList
+ENDLIST
+LIST FPTabList
+ENDLIST
+LIST TimingTabList
+ENDLIST
+LIST FDCTabList
+ENDLIST

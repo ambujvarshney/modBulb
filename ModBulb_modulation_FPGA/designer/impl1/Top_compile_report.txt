@@ -1,0 +1,232 @@
+***************************************************************************
+                               Status Report
+                          Fri Nov 11 11:41:35 2016 ***************************************************************************
+
+Product: Designer
+Release: v11.7
+Version: 11.7.0.119
+File Name: C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\designer\impl1\Top.adb
+Design Name: Top  Design State: compile
+Last Saved: Fri Nov 11 11:41:32 2016
+
+***** Device Data **************************************************
+
+Family: IGLOO  Die: AGLN060V5  Package: 100 VQFP
+Speed: STD  Voltage: 1.5
+
+Restrict JTAG Pins: YES
+Restrict Probe Pins: YES
+
+Junction Temperature Range:   COM
+Voltage Range:   COM
+
+***** Import Variables *********************************************
+
+Source File(s) Imported on Fri Nov 11 11:41:31 2016:
+        C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\Top.edn
+
+
+***** CAE Variables ************************************************
+
+Back Annotation File: N/A
+
+
+***** Bitstream Variables ******************************************
+
+Bitstream File: N/A
+     Lock Mode: OFF
+
+
+***** Compile Variables ********************************************
+
+Netlist PIN properties overwrite existing properties: 0
+
+Compile Output:
+=====================================================================
+Parameters used to run compile:
+===============================
+
+Family      : IGLOO
+Device      : AGLN060V5
+Package     : 100 VQFP
+Source      :
+C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\synthesis\Top.edn
+Format      : EDIF
+Topcell     : Top
+Speed grade : STD
+Temp        : 0:25:70
+Voltage     : 1.58:1.50:1.42
+
+Keep Existing Physical Constraints : No
+Keep Existing Timing Constraints   : Yes
+
+pdc_abort_on_error                 : Yes
+pdc_eco_display_unmatched_objects  : No
+pdc_eco_max_warnings               : 10000
+
+demote_globals                     : No
+promote_globals                    : No
+localclock_max_shared_instances    : 12
+localclock_buffer_tree_max_fanout  : 12
+
+combine_register                   : No
+delete_buffer_tree                 : No
+
+report_high_fanout_nets_limit      : 10
+
+=====================================================================
+Compile starts ...
+
+Warning: CMP201: Net RAM_0/RAM_R1C0_RD8 drives no load.
+Warning: CMP201: Net RAM_0/RAM_R1C0_RD17 drives no load.
+Warning: CMP201: Net RAM_0/RAM_R0C0_RD8 drives no load.
+Warning: CMP201: Net RAM_0/RAM_R0C0_RD17 drives no load.
+
+Netlist Optimization Report
+===========================
+
+Optimized macros:
+  - Dangling net drivers:   0
+  - Buffers:                0
+  - Inverters:              0
+  - Tieoff:                 0
+  - Logic combining:        59
+
+    Total macros optimized  59
+
+Warning: CMP503: Remapped 12 enable flip-flop(s) to a 2-tile implementation because the CLR/PRE
+         pin on the enable flip-flop is not being driven by a global net.
+
+There were 0 error(s) and 5 warning(s) in this design.
+=====================================================================
+Compile report:
+===============
+
+    CORE                       Used:   1350  Total:   1536   (87.89%)
+    IO (W/ clocks)             Used:      8  Total:     71   (11.27%)
+    GLOBAL (Chip+Quadrant)     Used:      2  Total:     18   (11.11%)
+    PLL                        Used:      0  Total:      1   (0.00%)
+    RAM/FIFO                   Used:      2  Total:      4   (50.00%)
+    Low Static ICC             Used:      0  Total:      1   (0.00%)
+    FlashROM                   Used:      0  Total:      1   (0.00%)
+    User JTAG                  Used:      0  Total:      1   (0.00%)
+
+Global Information:
+
+    Type            | Used   | Total
+    ----------------|--------|--------------
+    Chip global     | 2      | 6  (33.33%)*
+    Quadrant global | 0      | 12 (0.00%)
+
+    (*) Chip globals may be assigned to Quadrant globals using the Multi-View Navigator (MVN)
+        or Physical Design Constraints (PDC).
+        They may also be assigned to Quadrant globals automatically during Layout.
+
+Core Information:
+
+    Type    | Instances    | Core tiles
+    --------|--------------|-----------
+    COMB    | 1015         | 1015
+    SEQ     | 335          | 335
+
+I/O Function:
+
+    Type                                  | w/o register  | w/ register  | w/ DDR register
+    --------------------------------------|---------------|--------------|----------------
+    Input I/O                             | 5             | 0            | 0
+    Output I/O                            | 3             | 0            | 0
+    Bidirectional I/O                     | 0             | 0            | 0
+    Differential Input I/O Pairs          | 0             | 0            | 0
+    Differential Output I/O Pairs         | 0             | 0            | 0
+
+I/O Technology:
+
+                                    |   Voltages    |             I/Os
+    --------------------------------|-------|-------|-------|--------|--------------
+    I/O Standard(s)                 | Vcci  | Vref  | Input | Output | Bidirectional
+    --------------------------------|-------|-------|-------|--------|--------------
+    LVCMOS15                        | 1.50v | N/A   | 5     | 3      | 0
+
+I/O Placement:
+
+    Locked  :   0
+    Placed  :   0
+    UnPlaced:   8 ( 100.00% )
+
+Net information report:
+=======================
+
+The following nets drive enable flip-flops that have been remapped to a 2-tile implementation:
+    EffCnt  Type          Name
+    --------------------------
+    10      SET/RESET_NET Net   : RESET_N_c_0
+                          Driver: RESET_N_pad_RNI43B3
+    2       INT_NET       Net   : RESET_N_c
+                          Driver: RESET_N_pad
+
+The following nets have been assigned to a chip global resource:
+    Fanout  Type          Name
+    --------------------------
+    299     CLK_NET       Net   : CLK_c
+                          Driver: CLK_pad
+                          Source: NETLIST
+    40      CLK_NET       Net   : spi_sck_i_c
+                          Driver: spi_sck_i_pad
+                          Source: NETLIST
+
+High fanout nets in the post compile netlist:
+    Fanout  Type          Name
+    --------------------------
+    23      INT_NET       Net   : Modulator_0.mod_enabled
+                          Driver: Modulator_0/mod_enabled/U1
+    23      INT_NET       Net   : Modulator_0/N_101_0
+                          Driver: Modulator_0/timA_mod_ms_RNI9KFC8
+    22      INT_NET       Net   : Modulator_0/N_101
+                          Driver: Modulator_0/timA_mod_ms_RNI9KFC8_0
+    20      INT_NET       Net   : spi_slave_0/state_reg[4]
+                          Driver: spi_slave_0/state_reg[4]
+    19      INT_NET       Net   : Modulator_0/recv_addre
+                          Driver: Modulator_0/spi_dvld_handled_RNIC509
+    18      INT_NET       Net   : Modulator_0/N_136
+                          Driver: Modulator_0/timA_en_RNI961P4
+    18      INT_NET       Net   : Modulator_0/bit_idx[3]
+                          Driver: Modulator_0/bit_idx[3]
+    18      INT_NET       Net   : Modulator_0/bit_idx[0]
+                          Driver: Modulator_0/bit_idx[0]
+    17      INT_NET       Net   : Modulator_0/N_32_0
+                          Driver: Modulator_0/bit_idx_RNI2UAAB_0[0]
+    17      INT_NET       Net   : Modulator_0/N_32
+                          Driver: Modulator_0/bit_idx_RNI2UAAB[0]
+
+Nets that are candidates for clock assignment and the resulting fanout:
+    Fanout  Type          Name
+    --------------------------
+    25      INT_NET       Net   : RESET_N_c
+                          Driver: RESET_N_pad
+    23      INT_NET       Net   : Modulator_0.mod_enabled
+                          Driver: Modulator_0/mod_enabled/U1
+    23      INT_NET       Net   : Modulator_0/N_101_0
+                          Driver: Modulator_0/timA_mod_ms_RNI9KFC8
+    22      INT_NET       Net   : Modulator_0/N_101
+                          Driver: Modulator_0/timA_mod_ms_RNI9KFC8_0
+    20      INT_NET       Net   : spi_slave_0/state_reg[4]
+                          Driver: spi_slave_0/state_reg[4]
+    19      INT_NET       Net   : Modulator_0/recv_addre
+                          Driver: Modulator_0/spi_dvld_handled_RNIC509
+    18      INT_NET       Net   : Modulator_0/N_136
+                          Driver: Modulator_0/timA_en_RNI961P4
+    18      INT_NET       Net   : Modulator_0/bit_idx[3]
+                          Driver: Modulator_0/bit_idx[3]
+    18      INT_NET       Net   : Modulator_0/bit_idx[0]
+                          Driver: Modulator_0/bit_idx[0]
+    17      INT_NET       Net   : Modulator_0/N_32_0
+                          Driver: Modulator_0/bit_idx_RNI2UAAB_0[0]
+====================
+Flash*Freeze report:
+====================
+
+The design does not use the Flash*Freeze feature.
+
+====================
+
+

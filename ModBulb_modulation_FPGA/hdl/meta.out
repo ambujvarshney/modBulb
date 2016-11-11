@@ -1,0 +1,32 @@
+package Command_Pkg
+array byte_t
+end
+array word_t
+end
+array_of_array registers_t [ 6 : 0 ]
+end
+end
+usedpackages numeric_std
+end
+entity Modulator
+MEM_IN word_t
+MEM_WE buffer
+MEM_ADDR buffer
+SPI_IN word_t
+end
+package Command_Pkg
+array byte_t
+end
+array word_t
+end
+array_of_array registers_t [ 6 : 0 ]
+end
+end
+usedpackages numeric_std
+end
+entity Modulator
+MEM_IN word_t
+MEM_WE buffer
+MEM_ADDR buffer
+SPI_IN word_t
+end

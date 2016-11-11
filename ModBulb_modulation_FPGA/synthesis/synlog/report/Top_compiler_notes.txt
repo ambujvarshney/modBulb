@@ -1,0 +1,22 @@
+@N|Running in 64-bit mode
+@N|Running in 64-bit mode
+@N: CD720 :"C:\Microsemi\Libero_SoC_v11.7\Synplify\lib\vhd2008\std.vhd":146:18:146:21|Setting time resolution to ns
+@N:"C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\component\work\Top\Top.vhd":20:7:20:9|Top entity is set to Top.
+@N: CD231 :"C:\Microsemi\Libero_SoC_v11.7\Synplify\lib\vhd2008\std1164.vhd":890:16:890:17|Using onehot encoding for type mvl9plus ('U'="1000000000")
+@N: CD630 :"C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\component\work\Top\Top.vhd":20:7:20:9|Synthesizing work.top.rtl 
+@N: CD630 :"C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\hdl\spi_slave.vhd":145:7:145:15|Synthesizing work.spi_slave.rtl 
+@N: CD630 :"C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\smartgen\RAM\RAM.vhd":8:7:8:9|Synthesizing work.ram.def_arch 
+@N: CD630 :"C:\Microsemi\Libero_SoC_v11.7\Synplify\lib\proasic\igloo.vhd":2967:10:2967:18|Synthesizing igloo.ram512x18.syn_black_box 
+@N: CD630 :"C:\Microsemi\Libero_SoC_v11.7\Synplify\lib\proasic\igloo.vhd":2722:10:2722:12|Synthesizing igloo.vcc.syn_black_box 
+@N: CD630 :"C:\Microsemi\Libero_SoC_v11.7\Synplify\lib\proasic\igloo.vhd":1787:10:1787:12|Synthesizing igloo.gnd.syn_black_box 
+@N: CD630 :"C:\Microsemi\Libero_SoC_v11.7\Synplify\lib\proasic\igloo.vhd":1996:10:1996:12|Synthesizing igloo.mx2.syn_black_box 
+@N: CD630 :"C:\Microsemi\Libero_SoC_v11.7\Synplify\lib\proasic\igloo.vhd":1934:10:1934:12|Synthesizing igloo.inv.syn_black_box 
+@N: CD630 :"C:\Microsemi\Libero_SoC_v11.7\Synplify\lib\proasic\igloo.vhd":1379:10:1379:13|Synthesizing igloo.dfn1.syn_black_box 
+@N: CD630 :"C:\Microsemi\Libero_SoC_v11.7\Synplify\lib\proasic\igloo.vhd":2198:10:2198:12|Synthesizing igloo.or2.syn_black_box 
+@N: CD630 :"C:\Microsemi\Libero_SoC_v11.7\Synplify\lib\proasic\igloo.vhd":2852:10:2852:13|Synthesizing igloo.buff.syn_black_box 
+@N: CD630 :"C:\Microsemi\Libero_SoC_v11.7\Synplify\lib\proasic\igloo.vhd":1472:10:1472:17|Synthesizing igloo.dfn1e1c0.syn_black_box 
+@N: CD630 :"C:\Microsemi\Libero_SoC_v11.7\Synplify\lib\proasic\igloo.vhd":2206:10:2206:13|Synthesizing igloo.or2a.syn_black_box 
+@N: CD630 :"C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA\hdl\Modulator.vhd":9:7:9:15|Synthesizing work.modulator.architecture_modulator 
+@N: CD630 :"C:\Microsemi\Libero_SoC_v11.7\Synplify\lib\proasic\igloo.vhd":13:10:13:13|Synthesizing igloo.and2.syn_black_box 
+@N|Running in 64-bit mode
+

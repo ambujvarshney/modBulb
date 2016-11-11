@@ -1,0 +1,11 @@
+Microsemi Corporation - Microsemi Libero Software Release v11.7 (Version 11.7.0.119)
+
+Date      :  Fri Nov 11 11:39:45 2016
+Project   :  C:\Users\Abdullah\Projects\FPGA\Workplace\ModBulb_modulation_FPGA
+Component :  Top
+Family    :  IGLOO
+
+
+HDL source files for all Synthesis and Simulation tools:
+    C:/Users/Abdullah/Projects/FPGA/Workplace/ModBulb_modulation_FPGA/component/work/Top/Top.vhd
+
