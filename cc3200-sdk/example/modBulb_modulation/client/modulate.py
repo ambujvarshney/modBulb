@@ -48,57 +48,35 @@ def main(argv=None):
             help='the UDP broadcast address to send init command to')
         parser.add_argument('data', type=str, default='Hello! World.',
             nargs='?', help='the data to send to be modulated')
-        parser.add_argument('-l', '--loop', nargs=1, type=int,
-        	help='send a number of modulation commands')
-        parser.add_argument('-li', '--loop-indefinately', action='store_true',
-        	help='send modulate commands indefinately.')
-        parser.add_argument('-d', '--delay', type=float, default=0.2, 
-        	help='the delay between modulation commands in a loop')
+        parser.add_argument('-d', '--delay', type=int, default=200, 
+            help='the delay between modulation commands in a loop')
         parser.add_argument('encoding', type=str.upper, choices=['HEX', 'PLAIN'],
             default='PLAIN', nargs='?', help='the encoding of the provided data')
+        parser.add_argument('count', type=int, default=1, nargs='?',
+            help='the number of times to send the packet. 0 indicates infinity')
         parser.add_argument('bitrate', type=int, default=1e5, nargs='?',
             help='the modulation bitrate')
         parser.add_argument('indicator', type=int, default=0xea, nargs='?',
             help='the command indicator to send (0 <= val <= 255')
 
         args = parser.parse_args()
-        argv = (args.addr, args.indicator, args.bitrate, args.data, args.encoding,
-        		args.loop, args.loop_indefinately, args.delay)
+        argv = (args.addr, args.indicator, args.count, args.delay, args.bitrate, 
+                args.data, args.encoding)
 
-    if len(argv) < 8:
+    if len(argv) < 7:
         return ReturnCodes.ArgumentError
 
     data = None
-    if argv[4] == 'HEX':
+    if argv[6] == 'HEX':
         try:
-            data = argv[3].decode('hex')
+            data = argv[5].decode('hex')
         except:
             return ReturnCodes.DecodingError
     else:
-        data = argv[3]
+        data = argv[5]
         
     try:
-    	if argv[5] is not None:
-    		for i in range (argv[5][0]):
-    			ret = sendModCmd(argv[0], argv[1], argv[2], data)
-    			if ret != ReturnCodes.Success:
-    				return ret
-    			sleep(argv[7])
-    		return ReturnCodes.Success
-
-    	if argv[6]:
-    		try:
-	    		while True:
-	    			ret = sendModCmd(argv[0], argv[1], argv[2], data)
-	    			if ret != ReturnCodes.Success:
-	    				return ret
-	    			sleep(argv[7])
-	    	except KeyboardInterrupt:
-	    		return ReturnCodes.Success
-	    	except:
-	    		raise
-
-        return sendModCmd(argv[0], argv[1], argv[2], data)
+        return sendModCmd(argv[0], argv[1], argv[2], argv[3], argv[4], data)
     except:
         return ReturnCodes.ArgumentError
 

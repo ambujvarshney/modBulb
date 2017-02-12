@@ -164,18 +164,22 @@ def sendInitCmd(addr, ind, scheme, device, f1, f2, dc, bs):
 
     return ReturnCodes.Success
 
-def sendModCmd(addr, ind, br, data):
+def sendModCmd(addr, ind, cnt, delay, br, data):
     """Send a UDP packet containing modulation command and parameters.
 
     Args:
         addr (tuple): The address to send the command to.
         ind (int): Modulation command indicator.
+        cnt (int): The number of times to send the data.
+        delay (int): The interpacket delay in ms.
         br (int): Modulation bitrate.
         data (str): data to send for moulation."""
     try:
         msg  = struct.pack('!B', ind & 0xFF)
+        msg += struct.pack('!H', cnt & 0xFFFF)
+        msg += struct.pack('!H', delay & 0xFFFF)
         msg += struct.pack('!I', br)
-        msg += struct.pack('!I', len(data))
+        msg += struct.pack('!H', len(data))
         msg += data
     except:
         return ReturnCodes.ArgumentError

@@ -293,6 +293,13 @@ _EnablePWMTimer(void) {
 }
 
 static void
+_PausePWMTimer(void) {
+    // set the timer reload and compare values to produce a constant signal
+    MAP_TimerLoadSet(u32PWMTimBase, u32PWMTim, 0xFFFF);
+    MAP_TimerMatchSet(u32PWMTimBase, u32PWMTim, 0xFFFF);
+}
+
+static void
 _DisablePWMTimer(void) {
     // disable the timer
     MAP_TimerDisable(u32PWMTimBase, u32PWMTim);
@@ -321,7 +328,7 @@ _InitPWMTimer(uint32_t u32PinNum) {
                        (u32Timer == TIMER_A ? TIMER_CFG_A_PWM : TIMER_CFG_B_PWM)));
     MAP_TimerPrescaleSet(u32TimerBase, u32Timer, 0);
 
-    MAP_TimerControlLevel(u32TimerBase, u32Timer, 1);
+    MAP_TimerControlLevel(u32TimerBase, u32Timer, 0);
 
     // set the load and compare register values
     if (u32Timer == TIMER_A) {
@@ -334,6 +341,9 @@ _InitPWMTimer(uint32_t u32PinNum) {
     
     // initialize PWM output pin
     MAP_PinTypeTimer(u32PinNum, u32PinMode);
+    
+    // enable timer
+    _EnablePWMTimer();
 }
 
 static void
@@ -391,7 +401,9 @@ _OOK_DrTimerIntHandler(void) {
         HWREG(u32GPIOPinReg) = 0;
 		u8ModReady = 1;
         MOD_IF_u8ModReady = 1;
-        fnCb(vCbArgs);
+        if (fnCb != NULL) {
+            fnCb(vCbArgs);
+        }
 	}
 }
 
@@ -413,10 +425,12 @@ _BFSK_DrTimerIntHandler(void) {
 	} else {
         // stop modulation
         _DisableDrTimer();
-        _DisablePWMTimer();
+        _PausePWMTimer();
 		u8ModReady = 1;
         MOD_IF_u8ModReady = 1;
-        fnCb(vCbArgs);
+        if (fnCb != NULL) {
+            fnCb(vCbArgs);
+        }
 	}    
 }
 
@@ -451,8 +465,11 @@ _PPM_DrTimerIntHandler(void) {
         // stop modulation
         _DisableDrTimer();
 		u8ModReady = 1;
+        HWREG(u32GPIOPinReg) = 0;
         MOD_IF_u8ModReady = 1;
-        fnCb(vCbArgs);
+        if (fnCb != NULL) {
+            fnCb(vCbArgs);
+        }
     }
 }
 
@@ -530,7 +547,7 @@ MOD_IF_InitModulation_PPM(uint32_t u32DrTimerBase, uint32_t u32SoGPIONum, uint32
     ASSERT_INPUT(u32DrTimerBase >= TIMERA0_BASE && u32DrTimerBase <= TIMERA3_BASE);
     ASSERT_INPUT(u32SoGPIONum <= 31);
     ASSERT_INPUT(u32SoPinNum >= PIN_01 && u32SoPinNum <= PIN_64);
-    ASSERT_INPUT(u8BitSymbol == 2 || u8BitSymbol == 4 || u8BitSymbol == 8);
+    ASSERT_INPUT(u8BitSymbol == 1 || u8BitSymbol == 2 || u8BitSymbol == 4 || u8BitSymbol == 8);
 
     u8ModScheme = MOD_PPM;
     MOD_IF_u8ModScheme = MOD_PPM;

@@ -65,19 +65,33 @@
 #include "utils.h"
 #include "pin.h"
 #include "gpio.h"
+#include "spi.h"
 
-// commom interface includes
+// common interface includes
 #include "mod_if.h"
+#include "spi_if.h"
+#include "timer_if.h"
 #include "network_if.h"
 #ifndef NOTERM
 #include "uart_if.h"
 #endif
 #include "common.h"
 
+
+#define SPI_BITRATE         100000              ///< SPI bitrate
+#define SPI_CS_FPGA_GPIO    7                   ///< SPI chipselect of FPGA board
+#define SPI_CS_FPGA_IDX     0                   ///< Index of FPGA chip in SPI chipselect table
+#define SPI_CS_NUM          1                   ///< Number of chipselect pins in SPI
+
+#define FPGA_CLK            20000000ul          ///< Frequency at which the FPGA operates
+#define MCU_CLK             80000000ul          ///< Frequency at which the MCU operates
+
+#define LOOP_PER_MS         (MCU_CLK / 1000 / 5)///< Number of 5 cycle loops per millisecond
+
 #define SOCKET_PORT         5001                ///< The port to bind the UDP socket to.
 
-#define GPIO_PIN            10                  ///< Output signal GPIO pin number.
-#define PKG_PIN             PIN_01              ///< Output signal package pin number.
+#define SO_GPIO_PIN         10                  ///< Output signal GPIO pin number.
+#define SO_PKG_PIN          PIN_01              ///< Output signal package pin number.
 
 #define BUFF_LEN            11000               ///< Length of RX buffer.
 
@@ -87,25 +101,45 @@
 #define CMD_INIT_VAL        0x07                ///< Initialize command value.
 #define CMD_MOD_VAL         0x0A                ///< Modulate command value.
 
-#define CMD_IND             u8Buffer[0]         ///< Location of command indicator in RX buffer.
+#define CMD_IND             u8Buffer[0]         ///< Location of command indicator.
 
-#define CMD_SCHEME          u8Buffer[1]         ///< Location of modulation scheme in RX buffer.
-#define CMD_DEVICE          u8Buffer[2]         ///< Location of device in RX buffer.
-#define CMD_BFSKF1          u8Buffer[3]         ///< Location of BFSK freq1 in RX buffer.
-#define CMD_BFSKF2          u8Buffer[7]         ///< Location of BFSK freq2 in RX buffer.
-#define CMD_DUTY            u8Buffer[11]        ///< Location of BFSK duty cycle in RX buffer.
-#define CMD_PPMBS           u8Buffer[12]        ///< Location of PPM bit/symbol in RX buffer.
+#define CMD_SCHEME          u8Buffer[1]         ///< Location of modulation scheme.
+#define CMD_DEVICE          u8Buffer[2]         ///< Location of device.
+#define CMD_BFSKF1          u8Buffer[3]         ///< Location of BFSK freq1.
+#define CMD_BFSKF2          u8Buffer[7]         ///< Location of BFSK freq2.
+#define CMD_DUTY            u8Buffer[11]        ///< Location of BFSK duty cycle.
+#define CMD_PPMBS           u8Buffer[12]        ///< Location of PPM bit/symbol.
 
-#define CMD_BITRATE         u8Buffer[1]         ///< Location of modulation datarate in RX buffer.
-#define CMD_DLEN            u8Buffer[5]         ///< Location of data length in RX buffer.
-#define CMD_DATA            u8Buffer[9]         ///< Location of data in RX buffer.
-#define CMD_DATA_OH         9                   ///< Number of bytes that come before the data.
+#define CMD_PACKET_CNT      u8Buffer[1]         ///< Location of the number of packets to send.
+#define CMD_PACKET_DELAY    u8Buffer[3]         ///< Location of the delay between packets.
+#define CMD_BITRATE         u8Buffer[5]         ///< Location of modulation datarate.
+#define CMD_DLEN            u8Buffer[9]         ///< Location of data length.
+#define CMD_DATA            u8Buffer[11]        ///< Location of data.
+#define CMD_DATA_OH         11                  ///< Number of bytes that come before the data.
+
+#define FPGA_CMD_BR         u8Buffer[0]         ///< Location of bitrate word in FPGA command
+#define FPGA_CMD_CTRL       u8Buffer[2]         ///< Location of control word in FPGA command
+#define FPGA_CMD_LEN        u8Buffer[4]         ///< Location of data length word in FPGA command 
+#define FPGA_CMD_CNT        u8Buffer[6]         ///< Location of packet count word in FPGA command
+#define FPGA_CMD_DLY        u8Buffer[8]         ///< Location of interpacket delay word in FPGA command
+#define FPGA_CMD_F1         u8Buffer[10]        ///< Location of BFSK freq1 word in FPGA command
+#define FPGA_CMD_F2         u8Buffer[12]        ///< Location of BFSK freq2 word in FPGA command
+#define FPGA_CMD_M1         u8Buffer[14]        ///< Location of BFSK match1 word in FPGA command
+#define FPGA_CMD_M2         u8Buffer[16]        ///< Location of BFSK match2 word in FPGA command
+#define FPGA_CMD_SLT        u8Buffer[10]        ///< Location of PPM slot count word in FPGA command
+#define FPGA_CMD_BS         u8Buffer[12]        ///< Location of PPM bit/symbol word in FPGA command
+#define FPGA_CMD_DATA       u8Buffer[18]        ///< Location of first data byte in FPGA command
+#define FPGA_CMD_DATA_OH    18                  ///< Number of bytes before data in FPGA command
+#define FPGA_CMD_LASTW8_IDX 3                   ///< Index of bit in CTRL to set when last byte is ignored
+
+
 
 /// Application specific status/error codes.
 typedef enum{
     SOCKET_CREATE_ERROR = -0x7D0,               ///< Socket could not be created.
-    BIND_ERROR = SOCKET_CREATE_ERROR - 1,       ///< Socket count not be bound to address.
-    RECV_ERROR = BIND_ERROR -1                  ///< Reception failed.
+    BIND_ERROR  = SOCKET_CREATE_ERROR - 1,      ///< Socket count not be bound to address.
+    RECV_ERROR  = BIND_ERROR - 1,               ///< Reception failed.
+    AGAIN_ERROR = RECV_ERROR - 1                ///< Reception timed out.
 } eErrorCodes;
 
 /// Allowed commands.
@@ -136,9 +170,14 @@ static uint32_t u32CmdBFSKF1;                   ///< BFSK freq1 value.
 static uint32_t u32CmdBFSKF2;                   ///< BFSK freq2 value.
 static uint8_t  u8CmdDutyCycle;                 ///< BFSK duty cycle value.
 static uint8_t  u8CmdPPMBS;                     ///< PPM bit/symbol value.
+static uint16_t u16CmdPacketCnt;                ///< Number of packets to send.
+static uint16_t u16CmdPacketDelay;              ///< Delay betwteen packets.
 static uint32_t u32CmdBitRate;                  ///< Modulation bitrate.
 static uint8_t  *u8CmdData;                     ///< Pointer to data.
-static uint32_t u32CmdDataLen;                  ///< Data length.
+static uint16_t u16CmdDataLen;                  ///< Data length.
+
+static SlSockAddrIn_t sUDPClientAddr = {0};     ///< Structure which holds the client address
+static SlSocklen_t usUDPClientAddrSize = sizeof(SlSockAddrIn_t);///< size of the address structure
 
 /**********************************************************************************************//**
  * Broad initialization and configuration.
@@ -167,22 +206,6 @@ BoardInit(void) {
 }
 
 /**********************************************************************************************//**
- * \brief Modulation done callback funciton.
- *
- * This function sets the command flag to 0.
- *
- * \param[in]   vArgs          - Argument vector (not used).
- *
- * \return      None
- *
- *************************************************************************************************/
-static void
-ModDone(void *vArgs) {
-    // reset command flag
-    u8CmdFlag = 0;
-}
-
-/**********************************************************************************************//**
  * Combine an array of bytes into an integer.
  *
  * \param[in]   u8Bbuffer      - Pointer to the array of bytes which to combine.
@@ -190,18 +213,39 @@ ModDone(void *vArgs) {
  * \param[in]   u8Len          - The number of bytes to combine.
  * 
  * \return      The integer result of combining the bytes.
+ * 
+ * \note        This function uses big endian notation.
  *
  *************************************************************************************************/
-static uint64_t
-Bytes2Int(uint8_t *u8Bbuffer, uint8_t u8Len) {
+static uint32_t
+Bytes2Int(uint8_t *u8Buffer, uint8_t u8Len) {
     uint8_t i = 0;
-    uint64_t u64Res = 0;
+    uint32_t u32Res = 0;
     
     for (; i < u8Len; i++) {
-        u64Res |= (uint64_t)u8Bbuffer[i] << (u8Len - i - 1) * 8;
+        u32Res |= (uint32_t)u8Buffer[i] << (u8Len - i - 1) * 8;
     }
     
-    return u64Res;
+    return u32Res;
+}
+
+/**********************************************************************************************//**
+ * Break an integer into an array of bytes.
+ *
+ * \param[in]   u8Bbuffer      - Pointer to the array where to place the integer bytes.
+ * 
+ * \param[in]   u8Len          - The number of bytes to break.
+ *
+ * \note        This function uses big endian notation.
+ * 
+ *************************************************************************************************/
+static void
+Int2Bytes(uint8_t *u8Buffer, uint32_t u32Val, uint8_t u8Len) {
+    uint8_t i = 0;
+    
+    for (; i < u8Len; i++) {
+        u8Buffer[i] = u32Val >> (u8Len - i - 1) * 8;
+    }
 }
 
 /**********************************************************************************************//**
@@ -259,20 +303,34 @@ CreateUDPSocket(uint16_t u16Port) {
  *
  *************************************************************************************************/
 static int32_t
-GetConnectionlessCmd(int32_t s32SocketID) {
+GetConnectionlessCmd(int32_t s32SocketID, uint8_t u8Blocking) {
     int32_t s32RetVal = -1;
     uint32_t i;
     uint32_t u32RecvBytes = 0;
-    SlSockAddrIn_t sUDPClientAddr = {0};
-    SlSockAddrIn_t sUDPTmpAddr = {0};
-	SlSocklen_t usUDPClientAddrSize = sizeof(SlSockAddrIn_t);
-
+    uint8_t u8NonBlocking;
     u8CmdFlag = 0;
+    
+    if (!u8Blocking) {
+        // set socket to operate in nonblocking mode
+        u8NonBlocking = 1;
+        sl_SetSockOpt(s32SocketID, SL_SOL_SOCKET, SL_SO_NONBLOCKING, &u8NonBlocking, 
+                      sizeof(uint8_t));
+    }
 
     while(!u8CmdFlag) {
         // receive UDP socket
         s32RetVal = sl_RecvFrom(s32SocketID, u8Buffer, BUFF_LEN, 0,
                                 (SlSockAddr_t *)&sUDPClientAddr,  &usUDPClientAddrSize);
+        
+        if (s32RetVal == SL_EAGAIN) {
+            if (!u8Blocking) {
+                // set socket to operate in blocking mode
+                u8NonBlocking = 0;
+                sl_SetSockOpt(s32SocketID, SL_SOL_SOCKET, SL_SO_NONBLOCKING, &u8NonBlocking, 
+                              sizeof(uint8_t));
+            }
+            return SL_EAGAIN;
+        }
         
         if (s32RetVal < 0) {
             sl_Close(s32SocketID);
@@ -292,6 +350,14 @@ GetConnectionlessCmd(int32_t s32SocketID) {
             }
         }
     }
+    
+    
+    if (!u8Blocking) {
+        // set socket to operate in blocking mode
+        u8NonBlocking = 0;
+        sl_SetSockOpt(s32SocketID, SL_SOL_SOCKET, SL_SO_NONBLOCKING, &u8NonBlocking, 
+                      sizeof(uint8_t));
+    }
 
     u32RecvBytes += s32RetVal;
 
@@ -300,39 +366,34 @@ GetConnectionlessCmd(int32_t s32SocketID) {
             // set initialization parameters
             u8CmdScheme = CMD_SCHEME;
             u8CmdDevice = CMD_DEVICE;
-            u32CmdBFSKF1 = (uint32_t)Bytes2Int(&CMD_BFSKF1, sizeof(uint32_t));
-            u32CmdBFSKF2 = (uint32_t)Bytes2Int(&CMD_BFSKF2, sizeof(uint32_t));
+            u32CmdBFSKF1 = Bytes2Int(&CMD_BFSKF1, sizeof(uint32_t));
+            u32CmdBFSKF2 = Bytes2Int(&CMD_BFSKF2, sizeof(uint32_t));
             u8CmdDutyCycle = CMD_DUTY;
             u8CmdPPMBS = CMD_PPMBS;
             break;
         case CMD_MOD:
 
             // set modulation paramters
-            u32CmdBitRate = (uint32_t)Bytes2Int(&CMD_BITRATE, sizeof(uint32_t));
-            u32CmdDataLen = (uint32_t)Bytes2Int(&CMD_DLEN, sizeof(uint32_t));
+            u16CmdPacketCnt = (uint16_t)Bytes2Int(&CMD_PACKET_CNT, sizeof(uint16_t));
+            u16CmdPacketDelay = (uint16_t)Bytes2Int(&CMD_PACKET_DELAY, sizeof(uint16_t));
+            u32CmdBitRate = Bytes2Int(&CMD_BITRATE, sizeof(uint32_t));
+            u16CmdDataLen = (uint16_t)Bytes2Int(&CMD_DLEN, sizeof(uint16_t));
 
             // allocate memory for new data
-            if (u8CmdData != NULL) {
-                free(u8CmdData);
-            }
-            u8CmdData = malloc(u32CmdDataLen);
+            u8CmdData = realloc(u8CmdData, u16CmdDataLen);
 
             // copy data
             memcpy(u8CmdData, &CMD_DATA, u32RecvBytes - CMD_DATA_OH);
 
             // make sure that all data is received
-            while (u32RecvBytes < u32CmdDataLen + CMD_DATA_OH) {
+            while (u32RecvBytes < u16CmdDataLen + CMD_DATA_OH) {
                 s32RetVal = sl_RecvFrom(s32SocketID, u8Buffer,
-                                        u32CmdDataLen + CMD_DATA_OH - u32RecvBytes, 0,
-                                        (SlSockAddr_t *)&sUDPTmpAddr,  &usUDPClientAddrSize);
+                                        u16CmdDataLen + CMD_DATA_OH - u32RecvBytes, 0,
+                                        (SlSockAddr_t *)&sUDPClientAddr,  &usUDPClientAddrSize);
 
                 if (s32RetVal < 0) {
                     sl_Close(s32SocketID);
                     return RECV_ERROR;
-                }
-
-                if (sUDPTmpAddr.sin_addr.s_addr != sUDPClientAddr.sin_addr.s_addr) {
-                    continue;
                 }
 
                 memcpy(&u8CmdData[u32RecvBytes - CMD_DATA_OH], u8Buffer, s32RetVal);
@@ -355,8 +416,10 @@ GetConnectionlessCmd(int32_t s32SocketID) {
 void
 main(void) {
 
-    int32_t s32RetVal = -1;
+    int32_t  s32RetVal = -1;
     int32_t  s32SocketID;
+    uint32_t i;
+    uint8_t  u8GPIOPins[] = {SPI_CS_FPGA_GPIO};
     SlSecParams_t sSecParams = {0};
 
     // configure and initialize CC3200
@@ -366,26 +429,34 @@ main(void) {
     MAP_PRCMPeripheralClkEnable(PRCM_UARTA0, PRCM_RUN_MODE_CLK);
     MAP_PinTypeUART(PIN_55, PIN_MODE_3);
     MAP_PinTypeUART(PIN_57, PIN_MODE_3);
-
-    MAP_PRCMPeripheralClkEnable(PRCM_GPIOA2, PRCM_RUN_MODE_CLK);
-    MAP_PinTypeGPIO(PIN_15, PIN_MODE_0, false);
-    MAP_GPIODirModeSet(GPIOA2_BASE, GPIO_PIN_6, GPIO_DIR_MODE_OUT);
     
-    GPIO_IF_Set(PIN_15, GPIOA2_BASE, GPIO_PIN_6, 0);
-
-
     // initialize serial terminal
     InitTerm();
 
     // clear terminal
     ClearTerm();
-
+    
     // display banner
     UART_PRINT("\n\n\n\r");
-    UART_PRINT("\t\t *************************************************\n\r");
-    UART_PRINT("\t\t      CC3200 Modulator Application       \n\r");
-    UART_PRINT("\t\t *************************************************\n\r");
+    UART_PRINT("\t\t ************************************************\n\r");
+    UART_PRINT("\t\t           CC3200 Modulator Application\n\r");
+    UART_PRINT("\t\t ************************************************\n\r");
     UART_PRINT("\n\n\n\r");
+    
+    // enable SPI CS FPGA pin
+    MAP_PRCMPeripheralClkEnable(PRCM_GPIOA0, PRCM_RUN_MODE_CLK);
+    MAP_PinTypeGPIO(PIN_62, PIN_MODE_0, false);
+    MAP_GPIODirModeSet(GPIOA0_BASE, GPIO_PIN_7, GPIO_DIR_MODE_OUT);
+    
+    // init SPI
+    s32RetVal = SPI_IF_Init(SPI_BITRATE, SPI_MODE_MASTER, SPI_SUB_MODE_0, (SPI_SW_CTRL_CS | 
+                            SPI_3PIN_MODE | SPI_TURBO_OFF | SPI_CS_ACTIVELOW | SPI_WL_16), 
+                            u8GPIOPins, SPI_CS_NUM);
+    
+    if (s32RetVal < 0) {
+        UART_PRINT("Failed to initialize SPI\n\r");
+        while (1);
+    }
 
     // initialize simplelink to station mode
     Network_IF_InitDriver(ROLE_STA);
@@ -395,11 +466,11 @@ main(void) {
     sSecParams.KeyLen = strlen(SECURITY_KEY);
     sSecParams.Type = SECURITY_TYPE;
 
-    // connect to wifi network
+    // connect to WiFi network
     s32RetVal = Network_IF_ConnectAP(SSID_NAME, sSecParams);
 
     if (s32RetVal < 0) {
-        UART_PRINT("Could not connect to AP %d\r\n", s32RetVal);
+        UART_PRINT("Could not connect to AP. Error: %d\r\n", s32RetVal);
         while(1);
     }
 
@@ -407,49 +478,139 @@ main(void) {
     s32SocketID = CreateUDPSocket(SOCKET_PORT);
 
     if (s32SocketID < 0) {
+        UART_PRINT("Failed to create a socket\n\r");
         while(1);
     }
 
     while (1) {
         // get command parameters
-        s32RetVal = GetConnectionlessCmd(s32SocketID);
-
-        if (s32RetVal == 0) {
-            if (u8CmdDevice == DEV_MCU) {
-                if (u8CmdFlag == CMD_INIT) {
-                  
-                    GPIO_IF_Set(PIN_15, GPIOA2_BASE, GPIO_PIN_6, 0);
-                    
-                    // initialize modulation based on command parameters
-                    switch(u8CmdScheme) {
-                        case MOD_OOK:
-                            while (MOD_IF_InitModulation_OOK(TIMERA0_BASE, GPIO_PIN, PKG_PIN) != 0);
-                            UART_PRINT("Initialized to OOK \r\n");
-                            break;
-                        case MOD_BFSK:
-                            while (MOD_IF_InitModulation_BFSK(TIMERA0_BASE, PKG_PIN, u32CmdBFSKF1,
-                                    u32CmdBFSKF2, u8CmdDutyCycle) != 0);
-                            UART_PRINT("Initialized to BFSK, f1 = %d, f2 = %d , dc = %d%\r\n",
-                                        u32CmdBFSKF1, u32CmdBFSKF2, u8CmdDutyCycle);
-                            break;
-                        case MOD_PPM:
-                            while (MOD_IF_InitModulation_PPM(TIMERA0_BASE, GPIO_PIN, PKG_PIN,
-                                                                u8CmdPPMBS) != 0);
-                            UART_PRINT("Initialized to PPM, bit/symbol = %d \r\n", u8CmdPPMBS);
-                            break;
-                        default:
-                            break;
-                    }
-                } else if (u8CmdFlag == CMD_MOD) {
-                    int i;
-                    // send received data 
-                    MOD_IF_Modulate(u8CmdData, (uint16_t)u32CmdDataLen, u32CmdBitRate,
-                                    1, ModDone, NULL);
-                    UART_PRINT("%d bytes sent at %d b/s \r\n", u32CmdDataLen, u32CmdBitRate);
+        if (u8CmdFlag == 0) {
+            s32RetVal = GetConnectionlessCmd(s32SocketID, 1);
+            if (s32RetVal != 0) {
+                UART_PRINT("Command reception failed \n\r");
+                while (1);
+            }
+        } else {
+            s32RetVal = 0;
+        }
+        if (u8CmdDevice == DEV_MCU) {
+            if (u8CmdFlag == CMD_INIT) {
+                // initialize modulation based on command parameters
+                switch(u8CmdScheme) {
+                    case MOD_OOK:
+                        while (MOD_IF_InitModulation_OOK(TIMERA0_BASE, SO_GPIO_PIN, SO_PKG_PIN) 
+                               != 0);
+                        UART_PRINT("Initialized to OOK \r\n");
+                        break;
+                    case MOD_BFSK:
+                        while (MOD_IF_InitModulation_BFSK(TIMERA0_BASE, SO_PKG_PIN, 
+                               u32CmdBFSKF1, u32CmdBFSKF2, u8CmdDutyCycle) != 0);
+                        UART_PRINT("Initialized to BFSK, Freq1 = %d, Freq2 = %d , DutyCycle"
+                                   " = %d%\r\n", u32CmdBFSKF1, u32CmdBFSKF2, u8CmdDutyCycle);
+                        break;
+                    case MOD_PPM:
+                        while (MOD_IF_InitModulation_PPM(TIMERA0_BASE, SO_GPIO_PIN, SO_PKG_PIN,
+                               u8CmdPPMBS) != 0);
+                        UART_PRINT("Initialized to PPM, Bits/Symbol = %d \r\n", u8CmdPPMBS);
+                        break;
+                    default:
+                        break;
                 }
-            } else if (u8CmdDevice == DEV_FPGA) {
-                // @TODO: implement MCU -> FPGA communication
-                GPIO_IF_Set(PIN_15, GPIOA2_BASE, GPIO_PIN_6, 1);
+                u8CmdFlag = 0;
+            } else if (u8CmdFlag == CMD_MOD) {
+                // send received data
+                if (u16CmdPacketCnt == 1) {
+                    // one packet to send
+                    MOD_IF_Modulate(u8CmdData, u16CmdDataLen, u32CmdBitRate, 1, NULL, NULL);
+                    
+                    UART_PRINT("1 packet of %d bytes sent at %d b/s \r\n", u16CmdDataLen, 
+                               u32CmdBitRate);
+                    
+                    u8CmdFlag = 0;
+
+                } else {
+                    i = 1;
+                    u8CmdFlag = 0;
+                    MOD_IF_Modulate(u8CmdData, u16CmdDataLen, u32CmdBitRate, 1, NULL, NULL);
+                    while (!u16CmdPacketCnt || i < u16CmdPacketCnt) {
+                        while (!MOD_IF_u8ModReady);
+                        if (u16CmdPacketDelay > 0) {
+                            MAP_UtilsDelay(LOOP_PER_MS * (uint32_t)(u16CmdPacketDelay * 0.835 + 
+                                           0.5));
+                        }
+                        
+                        if (GetConnectionlessCmd(s32SocketID, 0) == 0) {
+                            break;
+                        }
+                        
+                        MOD_IF_Modulate(u8CmdData, u16CmdDataLen, u32CmdBitRate, 1, NULL, NULL);
+                        i++;
+                    }
+                    UART_PRINT("%d packets of %d bytes sent at %d b/s \r\n", i, 
+                               u16CmdDataLen, u32CmdBitRate);
+                }
+            }
+        } else if (u8CmdDevice == DEV_FPGA) {
+            if (u8CmdFlag == CMD_INIT) {
+                UART_PRINT("Initialized to %s \r\n", u8CmdScheme == MOD_OOK ? "OOK" :
+                                                     u8CmdScheme == MOD_BFSK? "BFSK":
+                                                     u8CmdScheme == MOD_PPM ? "PPM" : "");
+                u8CmdFlag = 0;
+            } else if (u8CmdFlag == CMD_MOD) {
+                
+                // set bitrate
+                if (u8CmdScheme == MOD_PPM) {
+                    Int2Bytes(&FPGA_CMD_BR, (uint16_t)(u8CmdPPMBS * FPGA_CLK /
+                                            (float)(u32CmdBitRate * (1ul << u8CmdPPMBS)) - 0.5),
+                              sizeof(uint16_t));
+                } else {
+                    Int2Bytes(&FPGA_CMD_BR, (uint16_t)(FPGA_CLK / (float)u32CmdBitRate - 0.5),
+                              sizeof(uint16_t));
+                }
+                // set control
+                Int2Bytes(&FPGA_CMD_CTRL, u8CmdScheme | ((1 << FPGA_CMD_LASTW8_IDX) & 
+                                          (u16CmdDataLen % 2) << FPGA_CMD_LASTW8_IDX),
+                          sizeof(uint16_t));
+                // set length
+                Int2Bytes(&FPGA_CMD_LEN, (uint16_t)(u16CmdDataLen / 2.0 + 0.51), 
+                          sizeof(uint16_t));
+                // set count
+                Int2Bytes(&FPGA_CMD_CNT, u16CmdPacketCnt, sizeof(uint16_t));
+                // set delay
+                Int2Bytes(&FPGA_CMD_DLY, u16CmdPacketDelay, sizeof(uint16_t));
+                
+                if (u8CmdScheme == MOD_BFSK) {
+                    // set freq1
+                    Int2Bytes(&FPGA_CMD_F1, (uint16_t)(FPGA_CLK / (float)u32CmdBFSKF1 - 0.5),
+                              sizeof(uint16_t));
+                    // set freq2
+                    Int2Bytes(&FPGA_CMD_F2, (uint16_t)(FPGA_CLK / (float)u32CmdBFSKF2 - 0.5),
+                              sizeof(uint16_t));
+                    // set match1
+                    Int2Bytes(&FPGA_CMD_M1, (uint16_t)((FPGA_CLK / (float)u32CmdBFSKF1 - 0.5) * 
+                                            (uint32_t)u8CmdDutyCycle / 100), sizeof(uint16_t));
+                    // set match2
+                    Int2Bytes(&FPGA_CMD_M2, (uint16_t)((FPGA_CLK / (float)u32CmdBFSKF2 - 0.5) * 
+                                            (uint32_t)u8CmdDutyCycle / 100), sizeof(uint16_t));
+                } else if (u8CmdScheme == MOD_PPM) {
+                    // set slot count
+                    Int2Bytes(&FPGA_CMD_SLT, 1ul << u8CmdPPMBS, sizeof(uint16_t));
+                    // set bit/symbol
+                    Int2Bytes(&FPGA_CMD_BS, u8CmdPPMBS, sizeof(uint16_t));
+                }
+                // copy data
+                memcpy(&FPGA_CMD_DATA, u8CmdData, u16CmdDataLen);
+                
+                // convert all words to little endian
+                for (i = 0; i < FPGA_CMD_DATA_OH + u16CmdDataLen + (u16CmdDataLen % 2); i += 2) {
+                    *(uint16_t*)&u8Buffer[i] = sl_Htons(*(uint16_t*)&u8Buffer[i]);
+                }
+                
+                // send the data
+                SPI_IF_Send(u8Buffer, u16CmdDataLen + FPGA_CMD_DATA_OH + (u16CmdDataLen % 2),
+                            SPI_CS_FPGA_IDX);
+                u8CmdFlag = 0;
+                UART_PRINT("Command was sent through SPI \r\n");
             }
         }
     }
