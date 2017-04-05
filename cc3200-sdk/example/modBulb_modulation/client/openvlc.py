@@ -135,7 +135,7 @@ def main(argv=None):
         
         #print frame_str
 
-        ret = sendModCmd(args.maddr, 0xea, 50000, frame_str.decode('hex'))
+        ret = sendModCmd(args.maddr, 0xea, 1, 0, 50000, frame_str.decode('hex'))
         
         if ret != ReturnCodes.Success:
             print "MOD ERROR %d" % ret
