@@ -48,7 +48,7 @@ def main(argv=None):
             nargs='?', help='the modulation scheme to use')
         parser.add_argument('device', type=str.upper, choices=mod_devices, default='MCU',
             nargs='?', help='the device to use to modulate the data')
-        parser.add_argument('-f', '--freq', type=int, default=[1e7, 8e6], nargs=2,
+        parser.add_argument('-f', '--freq', type=int, default=[1e7, 8e6], nargs=3,
             help='BFSK frequencies')
         parser.add_argument('-d', '--duty', type=int, default=50, help='The BFSK duty cycle')
         parser.add_argument('-n', '--bit-symbol', type=int, default=2, help='PPM bit per symbol')
@@ -63,8 +63,8 @@ def main(argv=None):
         return ReturnCodes.ArgumentError
 
     try:
-        return sendInitCmd(argv[0], argv[1], argv[2], argv[3], argv[4][0], argv[4][1], argv[5],
-                            argv[6])
+        return sendInitCmd(argv[0], argv[1], argv[2], argv[3], argv[4][0], argv[4][1], argv[4][2], 
+                            argv[5], argv[6])
     except:
         return ReturnCodes.ArgumentError
 

@@ -107,8 +107,9 @@
 #define CMD_DEVICE          u8Buffer[2]         ///< Location of device.
 #define CMD_BFSKF1          u8Buffer[3]         ///< Location of BFSK freq1.
 #define CMD_BFSKF2          u8Buffer[7]         ///< Location of BFSK freq2.
-#define CMD_DUTY            u8Buffer[11]        ///< Location of BFSK duty cycle.
-#define CMD_PPMBS           u8Buffer[12]        ///< Location of PPM bit/symbol.
+#define CMD_BFSKFI          u8Buffer[11]        ///< Locagion of BFSK idle freq.
+#define CMD_DUTY            u8Buffer[15]        ///< Location of BFSK duty cycle.
+#define CMD_PPMBS           u8Buffer[16]        ///< Location of PPM bit/symbol.
 
 #define CMD_PACKET_CNT      u8Buffer[1]         ///< Location of the number of packets to send.
 #define CMD_PACKET_DELAY    u8Buffer[3]         ///< Location of the delay between packets.
@@ -168,6 +169,7 @@ static uint8_t  u8CmdScheme;                    ///< Modulation scheme.
 static uint8_t  u8CmdDevice;                    ///< Selected device.
 static uint32_t u32CmdBFSKF1;                   ///< BFSK freq1 value.
 static uint32_t u32CmdBFSKF2;                   ///< BFSK freq2 value.
+static uint32_t u32CmdBFSKFI;                   ///< BFSK idle freq value.
 static uint8_t  u8CmdDutyCycle;                 ///< BFSK duty cycle value.
 static uint8_t  u8CmdPPMBS;                     ///< PPM bit/symbol value.
 static uint16_t u16CmdPacketCnt;                ///< Number of packets to send.
@@ -368,6 +370,7 @@ GetConnectionlessCmd(int32_t s32SocketID, uint8_t u8Blocking) {
             u8CmdDevice = CMD_DEVICE;
             u32CmdBFSKF1 = Bytes2Int(&CMD_BFSKF1, sizeof(uint32_t));
             u32CmdBFSKF2 = Bytes2Int(&CMD_BFSKF2, sizeof(uint32_t));
+            u32CmdBFSKFI = Bytes2Int(&CMD_BFSKFI, sizeof(uint32_t));
             u8CmdDutyCycle = CMD_DUTY;
             u8CmdPPMBS = CMD_PPMBS;
             break;
@@ -498,19 +501,18 @@ main(void) {
                 // initialize modulation based on command parameters
                 switch(u8CmdScheme) {
                     case MOD_OOK:
-                        while (MOD_IF_InitModulation_OOK(TIMERA0_BASE, SO_GPIO_PIN, SO_PKG_PIN) 
-                               != 0);
+                        while (MOD_IF_InitModulation_OOK(TIMERA0_BASE, SO_GPIO_PIN, SO_PKG_PIN));
                         UART_PRINT("Initialized to OOK \r\n");
                         break;
                     case MOD_BFSK:
                         while (MOD_IF_InitModulation_BFSK(TIMERA0_BASE, SO_PKG_PIN, 
-                               u32CmdBFSKF1, u32CmdBFSKF2, u8CmdDutyCycle) != 0);
+                               u32CmdBFSKF1, u32CmdBFSKF2, u32CmdBFSKFI, u8CmdDutyCycle));
                         UART_PRINT("Initialized to BFSK, Freq1 = %d, Freq2 = %d , DutyCycle"
                                    " = %d%\r\n", u32CmdBFSKF1, u32CmdBFSKF2, u8CmdDutyCycle);
                         break;
                     case MOD_PPM:
                         while (MOD_IF_InitModulation_PPM(TIMERA0_BASE, SO_GPIO_PIN, SO_PKG_PIN,
-                               u8CmdPPMBS) != 0);
+                               u8CmdPPMBS));
                         UART_PRINT("Initialized to PPM, Bits/Symbol = %d \r\n", u8CmdPPMBS);
                         break;
                     default:

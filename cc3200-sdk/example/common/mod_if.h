@@ -105,6 +105,7 @@ MOD_IF_InitModulation_OOK(uint32_t u32DrTimerBase, uint32_t u32SoGPIONum, uint32
  * \param[in]   u32PWMPinNum   -  The package pin associated with the desired PWM output signal.
  * \param[in]   u32Freq1       -  The signal frequency associated with logical 0.
  * \param[in]   u32Freq2       -  The signal frequency associated with logical 1.
+ * \param[in]   u32FreqI       -  The idle frequency.
  * \param[in]   u8DutyCycle    -  The duty cycle of the generated frequencies (0 <= value <= 100).
  *
  * \return      On success 0 will be returned. on error a negative (int32) value will be returned
@@ -119,7 +120,7 @@ MOD_IF_InitModulation_OOK(uint32_t u32DrTimerBase, uint32_t u32SoGPIONum, uint32
  *************************************************************************************************/
 int32_t
 MOD_IF_InitModulation_BFSK(uint32_t u32DrTimerBase, uint32_t u32PWMPinNum, uint32_t u32Freq1,
-                           uint32_t u32Freq2, uint8_t u8DutyCycle);
+                           uint32_t u32Freq2, uint32_t u32FreqI, uint8_t u8DutyCycle);
 
 /**********************************************************************************************//**
  * \brief This function initializes PPM.

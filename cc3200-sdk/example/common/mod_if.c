@@ -99,8 +99,10 @@ static uint32_t u32PWMTimLoadReg;
 static uint32_t u32PWMTimSwitchReg;
 static uint32_t u32PWMTimRldInt1;
 static uint32_t u32PWMTimRldInt2;
+static uint32_t u32PWMTimRldIntI;
 static uint32_t u32PWMTimSwtInt1;
 static uint32_t u32PWMTimSwtInt2;
+static uint32_t u32PWMTimSwtIntI;
 
 static uint32_t u32PPMSlotCntr;
 static uint32_t u32PPMSlotCntrMax;
@@ -285,8 +287,8 @@ static void
 _EnablePWMTimer(void) {
 
     // set the timer reload and compare values
-    MAP_TimerLoadSet(u32PWMTimBase, u32PWMTim, 0xFFFF);
-    MAP_TimerMatchSet(u32PWMTimBase, u32PWMTim, 0xFFFF);
+    MAP_TimerLoadSet(u32PWMTimBase, u32PWMTim, u32PWMTimRldIntI);
+    MAP_TimerMatchSet(u32PWMTimBase, u32PWMTim, u32PWMTimSwtIntI);
 
     // enable the timer
     MAP_TimerEnable(u32PWMTimBase, u32PWMTim);
@@ -295,8 +297,8 @@ _EnablePWMTimer(void) {
 static void
 _PausePWMTimer(void) {
     // set the timer reload and compare values to produce a constant signal
-    MAP_TimerLoadSet(u32PWMTimBase, u32PWMTim, 0xFFFF);
-    MAP_TimerMatchSet(u32PWMTimBase, u32PWMTim, 0xFFFF);
+    MAP_TimerLoadSet(u32PWMTimBase, u32PWMTim, u32PWMTimRldIntI);
+    MAP_TimerMatchSet(u32PWMTimBase, u32PWMTim, u32PWMTimSwtIntI);
 }
 
 static void
@@ -328,7 +330,7 @@ _InitPWMTimer(uint32_t u32PinNum) {
                        (u32Timer == TIMER_A ? TIMER_CFG_A_PWM : TIMER_CFG_B_PWM)));
     MAP_TimerPrescaleSet(u32TimerBase, u32Timer, 0);
 
-    MAP_TimerControlLevel(u32TimerBase, u32Timer, 0);
+    MAP_TimerControlLevel(u32TimerBase, u32Timer, 1);
 
     // set the load and compare register values
     if (u32Timer == TIMER_A) {
@@ -503,7 +505,7 @@ MOD_IF_InitModulation_OOK(uint32_t u32DrTimerBase, uint32_t u32SoGPIONum, uint32
 
 int32_t
 MOD_IF_InitModulation_BFSK(uint32_t u32DrTimerBase, uint32_t u32PWMPinNum, uint32_t u32Freq1,
-                           uint32_t u32Freq2, uint8_t u8DutyCycle) {
+                           uint32_t u32Freq2, uint32_t u32FreqI, uint8_t u8DutyCycle) {
 
     ASSERT_ERROR(u8ModReady || !u8ModInit, MOD_TRY_AGAIN);
 
@@ -519,9 +521,11 @@ MOD_IF_InitModulation_BFSK(uint32_t u32DrTimerBase, uint32_t u32PWMPinNum, uint3
 
     u32PWMTimRldInt1 = (uint32_t)(MOD_CLK_FREQ / (float)u32Freq1 - 0.5);
     u32PWMTimRldInt2 = (uint32_t)(MOD_CLK_FREQ / (float)u32Freq2 - 0.5);
+    u32PWMTimRldIntI = (uint32_t)(MOD_CLK_FREQ / (float)u32FreqI - 0.5);
 
     u32PWMTimSwtInt1 = (uint32_t)(u32PWMTimRldInt1 * u8DutyCycle / 100 + 0.000001);
     u32PWMTimSwtInt2 = (uint32_t)(u32PWMTimRldInt2 * u8DutyCycle / 100 + 0.000001);
+    u32PWMTimSwtIntI = (uint32_t)(u32PWMTimRldIntI * u8DutyCycle / 100 + 0.000001);
 
     // initialize the data rate timer
     _InitDrTimer(u32DrTimerBase, _BFSK_DrTimerIntHandler);

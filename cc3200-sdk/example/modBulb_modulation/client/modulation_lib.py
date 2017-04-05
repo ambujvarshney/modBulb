@@ -122,7 +122,7 @@ class Addr(object):
 
         return True
 
-def sendInitCmd(addr, ind, scheme, device, f1, f2, dc, bs):
+def sendInitCmd(addr, ind, scheme, device, f1, f2, fi, dc, bs):
     """Send a UDP packet containing initalization command and parameters.
 
     Args:
@@ -132,6 +132,7 @@ def sendInitCmd(addr, ind, scheme, device, f1, f2, dc, bs):
         device (str): Modulation device (value of mod_device).
         f1 (int): BFSK frequency representing logical 0.
         f2 (int): BFSK frequency representing logical 1.
+        fi (int): BFSK idle frequency. 
         dc (int): BFSK signal duty cycle (0 <= `dc` <= 100).
         bs (int): PPM bit/symbol.
 
@@ -144,6 +145,7 @@ def sendInitCmd(addr, ind, scheme, device, f1, f2, dc, bs):
         msg += struct.pack('!B', mod_devices.index(device) + 1)
         msg += struct.pack('!I', f1)
         msg += struct.pack('!I', f2)
+        msg += struct.pack('!I', fi)
         msg += struct.pack('!B', dc)
         msg += struct.pack('!B', bs)
     except:
